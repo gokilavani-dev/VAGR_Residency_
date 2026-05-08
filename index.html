@@ -1395,9 +1395,23 @@
         where,
         deleteDoc,
         doc,
+        runTransaction,
+        orderBy,
+        limit,
       } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
       const app = initializeApp(firebaseConfig);
+      async function generateBookingId() {
+        const bookingsRef = collection(db, "booking");
+        const q = query(bookingsRef, orderBy("number", "desc"), limit(1));
+        const snap = await getDocs(q);
+        const last = snap.empty ? 0 : snap.docs[0].data().number || 0;
+        const newNumber = last + 1;
+        return {
+          id: `VAGR-${new Date().getFullYear()}-${String(newNumber).padStart(4, "0")}`,
+          number: newNumber,
+        };
+      }
       const db = getFirestore(app);
 
       // ── helpers ──
@@ -1916,9 +1930,10 @@
             alert("Please fill all fields.");
             return;
           }
-          const bookingId = "VAGR-" + Date.now().toString().slice(-6);
+          const { id: bookingId, number } = await generateBookingId();
           await addDoc(collection(db, "booking"), {
             bookingId,
+            number,
             name,
             phone,
             checkin,
