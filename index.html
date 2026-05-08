@@ -1797,7 +1797,9 @@
       document
         .getElementById("findBookingBtn")
         .addEventListener("click", async () => {
-          const phone = document.getElementById("cancelPhone").value.trim();
+          const phone = window.cancelIti
+            ? window.cancelIti.getNumber()
+            : document.getElementById("cancelPhone").value.trim();
           const checkin = document.getElementById("cancelCheckin").value;
           const result = document.getElementById("cancelResult");
           foundIds = [];
