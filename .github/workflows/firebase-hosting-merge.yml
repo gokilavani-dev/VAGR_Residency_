@@ -14,8 +14,8 @@ jobs:
         env:
           FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
 
-      - name: Verify config.js
-        run: cat config.js
+      - name: Remove config.js from gitignore
+        run: sed -i '/config\.js/d' .gitignore
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
