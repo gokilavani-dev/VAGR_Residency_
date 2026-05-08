@@ -1539,6 +1539,13 @@
       // ── BOOKING DETAIL MODAL ──
       function showBookingDetail(b) {
         const today = todayStr();
+        const fmtTime = (t) => {
+          if (!t) return "";
+          const [h, m] = t.split(":").map(Number);
+          const ampm = h >= 12 ? "PM" : "AM";
+          const h12 = h % 12 || 12;
+          return `${h12}:${String(m).padStart(2, "0")} ${ampm}`;
+        };
         const cat = (b.roomCategory || "").toLowerCase().includes("large")
           ? "Large (Double-Cot)"
           : "Small (Single-Cot)";
@@ -1566,8 +1573,8 @@
     <div class="detail-row"><span class="lbl">Room Category</span><span class="val">${cat}</span></div>
     <div class="detail-row"><span class="lbl">Room Type</span><span class="val">${type}</span></div>
     <div class="detail-row"><span class="lbl">No. of Rooms</span><span class="val">${b.rooms || 1}</span></div>
-    <div class="detail-row"><span class="lbl">Check-in</span><span class="val">${b.checkin || ""} ${b.checkinTime ? '<span style="background:rgba(201,168,76,.12);color:var(--gold);padding:2px 8px;border-radius:2px;font-size:11px;margin-left:6px">' + b.checkinTime + "</span>" : ""}</span></div>
-    <div class="detail-row"><span class="lbl">Check-out</span><span class="val">${b.checkout || ""} ${b.checkoutTime ? '<span style="background:rgba(201,168,76,.12);color:var(--gold);padding:2px 8px;border-radius:2px;font-size:11px;margin-left:6px">' + b.checkoutTime + "</span>" : ""}</span></div>
+    <div class="detail-row"><span class="lbl">Check-in</span><span class="val">${b.checkin || ""} ${fmtTime(b.checkinTime) ? '<span style="background:rgba(201,168,76,.12);color:var(--gold);padding:2px 8px;border-radius:2px;font-size:11px;margin-left:6px">' + fmtTime(b.checkinTime) + "</span>" : ""}</span></div>
+    <div class="detail-row"><span class="lbl">Check-out</span><span class="val">${b.checkout || ""} ${fmtTime(b.checkoutTime) ? '<span style="background:rgba(201,168,76,.12);color:var(--gold);padding:2px 8px;border-radius:2px;font-size:11px;margin-left:6px">' + fmtTime(b.checkoutTime) + "</span>" : ""}</span></div>
     <div class="detail-row"><span class="lbl">Total Amount</span><span class="val">&#8377; ${b.totalAmount != null ? Number(b.totalAmount).toLocaleString() : b.price ? b.price.toLocaleString() : "—"}</span></div>
     <div class="detail-row"><span class="lbl">Paid Amount</span><span class="val" style="color:#16a34a">&#8377; ${b.paidAmount != null ? Number(b.paidAmount).toLocaleString() : b.price != null ? Number(b.price).toLocaleString() : "—"}</span></div>
     <div class="detail-row"><span class="lbl">Balance Due</span><span class="val" style="color:${(b.balance || 0) > 0 ? "#dc2626" : "#16a34a"}">&#8377; ${b.balance != null ? Number(b.balance).toLocaleString() : b.totalAmount != null && b.price != null ? (b.totalAmount - b.price).toLocaleString() : "0"}</span></div>
@@ -1909,7 +1916,9 @@
             alert("Please fill all fields.");
             return;
           }
+          const bookingId = "VAGR-" + Date.now().toString().slice(-6);
           await addDoc(collection(db, "booking"), {
+            bookingId,
             name,
             phone,
             checkin,
