@@ -14,8 +14,11 @@ jobs:
         env:
           FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
 
-      - name: Remove config.js from gitignore
-        run: sed -i '/config\.js/d' .gitignore
+      - name: Track config.js in git
+        run: |
+          git config user.email "action@github.com"
+          git config user.name "GitHub Action"
+          git add -f config.js
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
