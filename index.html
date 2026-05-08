@@ -1403,10 +1403,25 @@
       const app = initializeApp(firebaseConfig);
       async function generateBookingId() {
         const bookingsRef = collection(db, "booking");
-        const q = query(bookingsRef, orderBy("number", "desc"), limit(1));
-        const snap = await getDocs(q);
-        const last = snap.empty ? 0 : snap.docs[0].data().number || 0;
-        const newNumber = last + 1;
+        const snap = await getDocs(bookingsRef);
+
+        let maxNumber = 0;
+        snap.forEach((d) => {
+          const n = d.data().number;
+          if (n && n > maxNumber) maxNumber = n;
+        });
+
+        // existing bookingId-லிருந்தும் number எடு (VAGR-2026-0002 → 2)
+        snap.forEach((d) => {
+          const bid = d.data().bookingId || "";
+          const match = bid.match(/(\d+)$/);
+          if (match) {
+            const n = parseInt(match[1]);
+            if (n > maxNumber) maxNumber = n;
+          }
+        });
+
+        const newNumber = maxNumber + 1;
         return {
           id: `VAGR-${new Date().getFullYear()}-${String(newNumber).padStart(4, "0")}`,
           number: newNumber,
