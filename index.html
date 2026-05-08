@@ -1190,10 +1190,10 @@
               <div class="col-md-5">
                 <label class="form-lbl">Phone Number</label>
                 <input
-                  type="text"
+                  type="tel"
                   id="cancelPhone"
                   class="inp"
-                  placeholder="+919843825259"
+                  placeholder="9843825259"
                 />
               </div>
               <div class="col-md-4">
@@ -2051,6 +2051,22 @@
             window.adminIti = adminIti;
           }
         });
+
+      // Cancel phone intl-tel-input
+      let cancelIti = null;
+      window.addEventListener("DOMContentLoaded", () => {
+        cancelIti = window.intlTelInput(
+          document.getElementById("cancelPhone"),
+          {
+            initialCountry: "in",
+            separateDialCode: true,
+            preferredCountries: ["in", "us", "gb"],
+            utilsScript:
+              "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js",
+          },
+        );
+        window.cancelIti = cancelIti;
+      });
     </script>
   </body>
 </html>
