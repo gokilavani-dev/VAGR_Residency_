@@ -1926,6 +1926,37 @@
         });
 
       // ── BALANCE AUTO CALC ──
+      const priceChart = {
+        large: { ac: 2300, nonac: 2000 },
+        small: { ac: 1800, nonac: 1500 },
+      };
+
+      function autoCalcTotal() {
+        const category = document.getElementById("adminRoomCategory").value;
+        const roomType = document.getElementById("adminRoomType").value;
+        const rooms =
+          parseInt(document.getElementById("adminRooms").value) || 0;
+        const checkin = document.getElementById("adminCheckin").value;
+        const checkout = document.getElementById("adminCheckout").value;
+
+        if (!category || !roomType || !rooms || !checkin || !checkout) return;
+
+        const catKey = category.toLowerCase().includes("large")
+          ? "large"
+          : "small";
+        const typeKey = roomType.toLowerCase().includes("non") ? "nonac" : "ac";
+        const pricePerRoom = priceChart[catKey][typeKey];
+
+        const nights = Math.max(
+          (new Date(checkout) - new Date(checkin)) / (1000 * 60 * 60 * 24),
+          1,
+        );
+
+        const total = pricePerRoom * rooms * nights;
+        document.getElementById("adminTotal").value = total;
+        calcBalance();
+      }
+
       window.calcBalance = function () {
         const total =
           parseFloat(document.getElementById("adminTotal").value) || 0;
@@ -1935,14 +1966,22 @@
           2,
         );
       };
+
+      [
+        "adminRoomCategory",
+        "adminRoomType",
+        "adminRooms",
+        "adminCheckin",
+        "adminCheckout",
+      ].forEach((id) =>
+        document.getElementById(id).addEventListener("change", autoCalcTotal),
+      );
       document
         .getElementById("adminTotal")
         .addEventListener("input", calcBalance);
       document
         .getElementById("adminPaid")
         .addEventListener("input", calcBalance);
-
-      renderCalendar();
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"></script>
