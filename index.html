@@ -797,87 +797,45 @@
         box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.12);
         background: #fff;
       }
-      .btn-save {
-        background: var(--gold);
-        color: var(--deep);
-        border: none;
-        padding: 10px 24px;
-        border-radius: 2px;
-        font-weight: 600;
-        font-size: 13px;
-        font-family: "DM Sans", sans-serif;
-        cursor: pointer;
-        transition: 0.25s;
+      /* DATE PLACEHOLDER FIX */
+      .date-placeholder-wrap {
+        position: relative;
       }
-      .btn-save:hover {
-        background: var(--gold-light);
-      }
-      .btn-cancel-modal {
+      .date-placeholder-wrap input[type="date"] {
+        color: transparent;
+        position: relative;
+        z-index: 1;
         background: transparent;
-        color: var(--muted);
-        border: 1px solid #e2d9cc;
-        padding: 10px 20px;
-        border-radius: 2px;
-        font-size: 13px;
-        font-family: "DM Sans", sans-serif;
-        cursor: pointer;
-        transition: 0.2s;
       }
-      .btn-cancel-modal:hover {
-        border-color: var(--text);
+      .date-placeholder-wrap input[type="date"].has-val {
         color: var(--text);
       }
-      .detail-row {
-        display: flex;
-        justify-content: space-between;
-        padding: 10px 0;
-        border-bottom: 1px solid #f5f0ea;
+      .date-placeholder-wrap input[type="date"]::-webkit-datetime-edit {
+        color: inherit;
+      }
+      .date-placeholder-wrap
+        input[type="date"]::-webkit-calendar-picker-indicator {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0.6;
+        cursor: pointer;
+        z-index: 2;
+      }
+      .date-placeholder-wrap .date-ph {
+        position: absolute;
+        top: 50%;
+        left: 14px;
+        transform: translateY(-50%);
         font-size: 13px;
-      }
-      .detail-row:last-child {
-        border-bottom: none;
-      }
-      .detail-row .lbl {
         color: var(--muted);
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-weight: 500;
+        pointer-events: none;
+        font-family: "DM Sans", sans-serif;
+        z-index: 0;
       }
-      .detail-row .val {
-        color: var(--deep);
-        font-weight: 600;
-        text-align: right;
-      }
-      .status-pill {
-        display: inline-block;
-        padding: 4px 12px;
-        border-radius: 2px;
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-      }
-      .status-pill.active {
-        background: #dcfce7;
-        color: #15803d;
-      }
-      .status-pill.upcoming {
-        background: #eff6ff;
-        color: #1d4ed8;
-      }
-      .status-pill.done {
-        background: #f3f4f6;
-        color: #6b7280;
-      }
-      .admin-note {
-        font-size: 12px;
-        color: var(--muted);
-        padding: 13px 18px;
-        background: rgba(201, 168, 76, 0.06);
-        border-left: 3px solid var(--gold);
-        border-radius: 2px;
-        margin-top: 4px;
+      .date-placeholder-wrap.has-val .date-ph {
+        display: none !important;
       }
       /* ROOM GRID */
       .room-grid {
@@ -983,34 +941,65 @@
         color: var(--deep);
       }
       /* CLOCK */
-      .clock-wrap {
+      .clock-trigger {
         border: 1px solid #e2d9cc;
         border-radius: 3px;
         background: #fdfcfa;
-        padding: 12px;
-        text-align: center;
+        padding: 10px 14px;
+        cursor: pointer;
+        font-size: 13px;
+        font-family: "DM Sans", sans-serif;
+        width: 100%;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: 0.2s;
+        color: var(--text);
       }
-      .clock-label {
+      .clock-trigger:hover {
+        border-color: var(--gold);
+      }
+      .clock-trigger.active {
+        border-color: var(--gold);
+        box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.12);
+      }
+      .clock-popup {
+        position: fixed;
+        z-index: 99999;
+        background: #fff;
+        border: 1px solid #e2d9cc;
+        border-radius: 8px;
+        box-shadow: 0 8px 32px rgba(12, 26, 46, 0.18);
+        padding: 16px 16px 18px;
+        width: 220px;
+        display: none;
+      }
+      .clock-popup.open {
+        display: block;
+      }
+      .clock-popup-label {
         font-size: 10px;
         letter-spacing: 1px;
         text-transform: uppercase;
         color: var(--muted);
-        margin-bottom: 8px;
+        margin-bottom: 10px;
+        text-align: center;
       }
-      .clock-face {
+      .clock-face-wrap {
         position: relative;
         width: 160px;
         height: 160px;
         margin: 0 auto;
       }
-      .clock-ampm {
+      .clock-ampm-row {
         display: flex;
         justify-content: center;
-        gap: 8px;
-        margin-top: 8px;
+        gap: 10px;
+        margin-top: 10px;
       }
       .ampm-btn {
-        padding: 4px 14px;
+        padding: 5px 16px;
         border-radius: 20px;
         font-size: 12px;
         font-family: "DM Sans", sans-serif;
@@ -1026,12 +1015,87 @@
         color: var(--deep);
         font-weight: 600;
       }
-      .clock-display {
-        text-align: center;
-        margin-top: 6px;
-        font-size: 14px;
-        font-weight: 700;
+      .btn-save {
+        background: var(--gold);
         color: var(--deep);
+        border: none;
+        padding: 10px 24px;
+        border-radius: 2px;
+        font-weight: 600;
+        font-size: 13px;
+        font-family: "DM Sans", sans-serif;
+        cursor: pointer;
+        transition: 0.25s;
+      }
+      .btn-save:hover {
+        background: var(--gold-light);
+      }
+      .btn-cancel-modal {
+        background: transparent;
+        color: var(--muted);
+        border: 1px solid #e2d9cc;
+        padding: 10px 20px;
+        border-radius: 2px;
+        font-size: 13px;
+        font-family: "DM Sans", sans-serif;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+      .btn-cancel-modal:hover {
+        border-color: var(--text);
+        color: var(--text);
+      }
+      .detail-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #f5f0ea;
+        font-size: 13px;
+      }
+      .detail-row:last-child {
+        border-bottom: none;
+      }
+      .detail-row .lbl {
+        color: var(--muted);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 500;
+      }
+      .detail-row .val {
+        color: var(--deep);
+        font-weight: 600;
+        text-align: right;
+      }
+      .status-pill {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 2px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      .status-pill.active {
+        background: #dcfce7;
+        color: #15803d;
+      }
+      .status-pill.upcoming {
+        background: #eff6ff;
+        color: #1d4ed8;
+      }
+      .status-pill.done {
+        background: #f3f4f6;
+        color: #6b7280;
+      }
+      .admin-note {
+        font-size: 12px;
+        color: var(--muted);
+        padding: 13px 18px;
+        background: rgba(201, 168, 76, 0.06);
+        border-left: 3px solid var(--gold);
+        border-radius: 2px;
+        margin-top: 4px;
       }
       @media (max-width: 768px) {
         .sidebar {
@@ -1083,9 +1147,7 @@
           font-size: 34px;
         }
       }
-
       @media (max-width: 576px) {
-        /* Modal full width */
         .modal-dialog {
           margin: 8px;
         }
@@ -1095,15 +1157,11 @@
         .modal-header {
           padding: 14px 16px;
         }
-
-        /* Name + Phone stack vertically */
         .modal-body .row .col-6 {
           width: 100% !important;
           flex: 0 0 100% !important;
           max-width: 100% !important;
         }
-
-        /* Room grid compact */
         .room-grid th,
         .room-grid td {
           padding: 6px 8px;
@@ -1118,8 +1176,6 @@
           font-size: 14px;
           min-width: 18px;
         }
-
-        /* Room total bar */
         .room-total-bar {
           flex-direction: column;
           align-items: flex-start;
@@ -1128,58 +1184,21 @@
           font-size: 10px;
           padding: 2px 6px;
         }
-
-        /* Clock */
         .clock-trigger {
           font-size: 12px;
           padding: 9px 12px;
         }
         .clock-popup {
-          min-width: 180px;
+          width: 200px;
         }
-        .clock-face {
+        .clock-face-wrap {
           width: 140px !important;
           height: 140px !important;
         }
-      }
-
-      /* CLOCK POPUP */
-      .clock-popup {
-        position: absolute;
-        z-index: 9999;
-        background: #fff;
-        border: 1px solid #e2d9cc;
-        border-radius: 6px;
-        box-shadow: 0 8px 32px rgba(12, 26, 46, 0.15);
-        padding: 14px;
-        min-width: 200px;
-        display: none;
-      }
-      .clock-popup.open {
-        display: block;
-      }
-      .clock-trigger {
-        border: 1px solid #e2d9cc;
-        border-radius: 3px;
-        background: #fdfcfa;
-        padding: 10px 14px;
-        cursor: pointer;
-        font-size: 13px;
-        font-family: "DM Sans", sans-serif;
-        width: 100%;
-        text-align: left;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        transition: 0.2s;
-        color: var(--text);
-      }
-      .clock-trigger:hover {
-        border-color: var(--gold);
-      }
-      .clock-trigger.active {
-        border-color: var(--gold);
-        box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.12);
+        .ampm-btn {
+          padding: 4px 14px;
+          font-size: 11px;
+        }
       }
     </style>
   </head>
@@ -1466,12 +1485,15 @@
               <div class="row g-3 mb-3">
                 <div class="col-6">
                   <label class="form-label">Check-in Date</label>
-                  <input
-                    type="date"
-                    id="adminCheckin"
-                    class="form-control"
-                    required
-                  />
+                  <div class="date-placeholder-wrap" id="checkinWrap">
+                    <input
+                      type="date"
+                      id="adminCheckin"
+                      class="form-control"
+                      required
+                    />
+                    <span class="date-ph" id="checkinPh">DD-MM-YYYY</span>
+                  </div>
                 </div>
                 <div class="col-6">
                   <label class="form-label">Check-in Time</label>
@@ -1488,57 +1510,6 @@
                         style="color: var(--muted); font-size: 12px"
                       ></i>
                     </button>
-                    <div class="clock-popup" id="checkinPopup">
-                      <div
-                        class="clock-label"
-                        style="
-                          font-size: 10px;
-                          letter-spacing: 1px;
-                          text-transform: uppercase;
-                          color: var(--muted);
-                          margin-bottom: 8px;
-                          text-align: center;
-                        "
-                      >
-                        Select Hour
-                      </div>
-                      <div
-                        class="clock-face"
-                        id="checkinClockFace"
-                        style="
-                          position: relative;
-                          width: 160px;
-                          height: 160px;
-                          margin: 0 auto;
-                        "
-                      ></div>
-                      <div
-                        class="clock-ampm"
-                        style="
-                          display: flex;
-                          justify-content: center;
-                          gap: 8px;
-                          margin-top: 8px;
-                        "
-                      >
-                        <button
-                          type="button"
-                          class="ampm-btn"
-                          id="checkinAM"
-                          onclick="setAmPm('checkin', 'AM')"
-                        >
-                          AM
-                        </button>
-                        <button
-                          type="button"
-                          class="ampm-btn active"
-                          id="checkinPM"
-                          onclick="setAmPm('checkin', 'PM')"
-                        >
-                          PM
-                        </button>
-                      </div>
-                    </div>
                     <input type="hidden" id="adminCheckinTime" value="12:00" />
                   </div>
                 </div>
@@ -1546,12 +1517,15 @@
               <div class="row g-3 mb-3">
                 <div class="col-6">
                   <label class="form-label">Check-out Date</label>
-                  <input
-                    type="date"
-                    id="adminCheckout"
-                    class="form-control"
-                    required
-                  />
+                  <div class="date-placeholder-wrap" id="checkoutWrap">
+                    <input
+                      type="date"
+                      id="adminCheckout"
+                      class="form-control"
+                      required
+                    />
+                    <span class="date-ph" id="checkoutPh">DD-MM-YYYY</span>
+                  </div>
                 </div>
                 <div class="col-6">
                   <label class="form-label">Check-out Time</label>
@@ -1568,57 +1542,6 @@
                         style="color: var(--muted); font-size: 12px"
                       ></i>
                     </button>
-                    <div class="clock-popup" id="checkoutPopup">
-                      <div
-                        class="clock-label"
-                        style="
-                          font-size: 10px;
-                          letter-spacing: 1px;
-                          text-transform: uppercase;
-                          color: var(--muted);
-                          margin-bottom: 8px;
-                          text-align: center;
-                        "
-                      >
-                        Select Hour
-                      </div>
-                      <div
-                        class="clock-face"
-                        id="checkoutClockFace"
-                        style="
-                          position: relative;
-                          width: 160px;
-                          height: 160px;
-                          margin: 0 auto;
-                        "
-                      ></div>
-                      <div
-                        class="clock-ampm"
-                        style="
-                          display: flex;
-                          justify-content: center;
-                          gap: 8px;
-                          margin-top: 8px;
-                        "
-                      >
-                        <button
-                          type="button"
-                          class="ampm-btn active"
-                          id="checkoutAM"
-                          onclick="setAmPm('checkout', 'AM')"
-                        >
-                          AM
-                        </button>
-                        <button
-                          type="button"
-                          class="ampm-btn"
-                          id="checkoutPM"
-                          onclick="setAmPm('checkout', 'PM')"
-                        >
-                          PM
-                        </button>
-                      </div>
-                    </div>
                     <input type="hidden" id="adminCheckoutTime" value="11:00" />
                   </div>
                 </div>
@@ -1796,6 +1719,30 @@
       </div>
     </div>
 
+    <!-- CLOCK POPUP (single shared) -->
+    <div class="clock-popup" id="clockPopup">
+      <div class="clock-popup-label">Select Hour</div>
+      <div class="clock-face-wrap" id="clockFaceWrap"></div>
+      <div class="clock-ampm-row">
+        <button
+          type="button"
+          class="ampm-btn"
+          id="popupAM"
+          onclick="setAmPm('AM')"
+        >
+          AM
+        </button>
+        <button
+          type="button"
+          class="ampm-btn"
+          id="popupPM"
+          onclick="setAmPm('PM')"
+        >
+          PM
+        </button>
+      </div>
+    </div>
+
     <!-- BOOKING DETAIL MODAL -->
     <div class="modal fade" id="bookingDetailModal" tabindex="-1">
       <div class="modal-dialog modal-dialog-centered">
@@ -1855,20 +1802,49 @@
         small: { ac: 0, nonac: 0 },
       };
 
+      // ── DATE PLACEHOLDER ──
+      function initDatePh(inputId, wrapperId) {
+        const inp = document.getElementById(inputId);
+        const wrap = document.getElementById(wrapperId);
+        if (!inp || !wrap) return;
+        const update = () => {
+          if (inp.value) {
+            inp.classList.add("has-val");
+            wrap.classList.add("has-val");
+          } else {
+            inp.classList.remove("has-val");
+            wrap.classList.remove("has-val");
+          }
+        };
+        inp.addEventListener("change", update);
+        inp.addEventListener("input", update);
+        update();
+      }
+      function resetDatePh(inputId, wrapperId) {
+        const inp = document.getElementById(inputId);
+        const wrap = document.getElementById(wrapperId);
+        if (inp) inp.classList.remove("has-val");
+        if (wrap) wrap.classList.remove("has-val");
+      }
+
       // ── ANALOG CLOCK ──
       const clockState = {
         checkin: { hour: 12, ampm: "PM" },
         checkout: { hour: 11, ampm: "AM" },
       };
+      let activeClockId = null;
 
       function buildClock(id) {
         const state = clockState[id];
-        const face = document.getElementById(id + "ClockFace");
+        const face = document.getElementById("clockFaceWrap");
         face.innerHTML = "";
-        const SIZE = 160,
-          cx = SIZE / 2,
+        const isMobile = window.innerWidth <= 576;
+        const SIZE = isMobile ? 140 : 160;
+        face.style.width = SIZE + "px";
+        face.style.height = SIZE + "px";
+        const cx = SIZE / 2,
           cy = SIZE / 2,
-          R = 62;
+          R = isMobile ? 52 : 62;
 
         const svg = document.createElementNS(
           "http://www.w3.org/2000/svg",
@@ -1878,7 +1854,6 @@
         svg.setAttribute("height", SIZE);
         svg.style.cssText = "position:absolute;top:0;left:0";
 
-        // Background circle
         const bg = document.createElementNS(
           "http://www.w3.org/2000/svg",
           "circle",
@@ -1891,7 +1866,6 @@
         bg.setAttribute("stroke-width", "1");
         svg.appendChild(bg);
 
-        // Hand
         const selH =
           state.ampm === "AM"
             ? state.hour === 12
@@ -1916,7 +1890,6 @@
         hand.setAttribute("stroke-linecap", "round");
         svg.appendChild(hand);
 
-        // Center dot
         const dot = document.createElementNS(
           "http://www.w3.org/2000/svg",
           "circle",
@@ -1926,10 +1899,8 @@
         dot.setAttribute("r", "4");
         dot.setAttribute("fill", "var(--gold)");
         svg.appendChild(dot);
-
         face.appendChild(svg);
 
-        // Hour buttons
         for (let h = 1; h <= 12; h++) {
           const a = (h / 12) * 2 * Math.PI - Math.PI / 2;
           const x = cx + R * Math.cos(a),
@@ -1938,28 +1909,19 @@
           const btn = document.createElement("button");
           btn.type = "button";
           btn.textContent = h;
-          btn.style.cssText = `
-            position:absolute;width:28px;height:28px;
-            left:${x - 14}px;top:${y - 14}px;
-            border-radius:50%;
-            border:${isSel ? "none" : "1px solid #e2d9cc"};
-            background:${isSel ? "var(--gold)" : "#fff"};
-            color:${isSel ? "var(--deep)" : "var(--text)"};
-            font-weight:${isSel ? "700" : "400"};
-            font-size:11px;cursor:pointer;
-            font-family:'DM Sans',sans-serif;
-            display:flex;align-items:center;justify-content:center;
-            box-shadow:${isSel ? "0 2px 8px rgba(201,168,76,.35)" : "none"};
-            transition:.1s;
-          `;
+          btn.style.cssText = `position:absolute;width:26px;height:26px;left:${x - 13}px;top:${y - 13}px;border-radius:50%;border:${isSel ? "none" : "1px solid #e2d9cc"};background:${isSel ? "var(--gold)" : "#fff"};color:${isSel ? "var(--deep)" : "var(--text)"};font-weight:${isSel ? "700" : "400"};font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center;box-shadow:${isSel ? "0 2px 8px rgba(201,168,76,.35)" : "none"};transition:.1s`;
           btn.addEventListener("click", (e) => {
             e.stopPropagation();
-            clockState[id].hour = h;
-            updateClockVal(id);
-            buildClock(id);
+            clockState[activeClockId].hour = h;
+            updateClockVal(activeClockId, false);
+            buildClock(activeClockId);
           });
           face.appendChild(btn);
         }
+        document.getElementById("popupAM").className =
+          "ampm-btn" + (state.ampm === "AM" ? " active" : "");
+        document.getElementById("popupPM").className =
+          "ampm-btn" + (state.ampm === "PM" ? " active" : "");
       }
 
       function updateClockVal(id, closePopup = false) {
@@ -1967,65 +1929,78 @@
         let h24 = hour;
         if (ampm === "AM" && hour === 12) h24 = 0;
         if (ampm === "PM" && hour !== 12) h24 = hour + 12;
-        const val = `${String(h24).padStart(2, "0")}:00`;
         document.getElementById(
           `admin${id === "checkin" ? "Checkin" : "Checkout"}Time`,
-        ).value = val;
+        ).value = `${String(h24).padStart(2, "0")}:00`;
         document.getElementById(id + "Display").textContent = `${hour} ${ampm}`;
-        // Close popup only when AM/PM selected
-        if (closePopup) {
-          document.getElementById(id + "Popup").classList.remove("open");
-          document.getElementById(id + "Trigger").classList.remove("active");
-        }
+        if (closePopup) closeClock();
         updateRoomTotal();
       }
 
-      window.setAmPm = function (id, ampm) {
-        clockState[id].ampm = ampm;
-        document.getElementById(id + "AM").className =
-          "ampm-btn" + (ampm === "AM" ? " active" : "");
-        document.getElementById(id + "PM").className =
-          "ampm-btn" + (ampm === "PM" ? " active" : "");
-        updateClockVal(id, true); // true = close popup
+      window.setAmPm = function (ampm) {
+        if (!activeClockId) return;
+        clockState[activeClockId].ampm = ampm;
+        updateClockVal(activeClockId, true);
+      };
+
+      function positionPopup(trigger) {
+        const popup = document.getElementById("clockPopup");
+        const rect = trigger.getBoundingClientRect();
+        const popupH = 280;
+        const spaceBelow = window.innerHeight - rect.bottom;
+        const spaceAbove = rect.top;
+        let top =
+          spaceBelow >= popupH || spaceBelow >= spaceAbove
+            ? rect.bottom + 4
+            : rect.top - popupH - 4;
+        top = Math.max(8, Math.min(top, window.innerHeight - popupH - 8));
+        const popupW = 220;
+        let left = rect.left;
+        if (left + popupW > window.innerWidth - 8)
+          left = window.innerWidth - popupW - 8;
+        if (left < 8) left = 8;
+        popup.style.top = top + "px";
+        popup.style.left = left + "px";
+      }
+
+      function closeClock() {
+        document.getElementById("clockPopup").classList.remove("open");
+        if (activeClockId) {
+          document
+            .getElementById(activeClockId + "Trigger")
+            .classList.remove("active");
+        }
+        activeClockId = null;
+      }
+
+      window.toggleClock = function (id) {
+        const popup = document.getElementById("clockPopup");
+        const trigger = document.getElementById(id + "Trigger");
+        if (activeClockId === id && popup.classList.contains("open")) {
+          closeClock();
+          return;
+        }
+        activeClockId = id;
+        ["checkin", "checkout"].forEach((x) =>
+          document.getElementById(x + "Trigger").classList.remove("active"),
+        );
+        trigger.classList.add("active");
+        popup.classList.add("open");
+        positionPopup(trigger);
         buildClock(id);
       };
 
-      window.toggleClock = function (id) {
-        const popup = document.getElementById(id + "Popup");
-        const trigger = document.getElementById(id + "Trigger");
-        const other = id === "checkin" ? "checkout" : "checkin";
-        // Close other
-        document.getElementById(other + "Popup").classList.remove("open");
-        document.getElementById(other + "Trigger").classList.remove("active");
-        // Toggle this
-        popup.classList.toggle("open");
-        trigger.classList.toggle("active");
-        if (popup.classList.contains("open")) buildClock(id);
-      };
-
-      // Close on outside click
       document.addEventListener("click", (e) => {
-        ["checkin", "checkout"].forEach((id) => {
-          const popup = document.getElementById(id + "Popup");
-          const trigger = document.getElementById(id + "Trigger");
-          if (
-            popup &&
-            !popup.contains(e.target) &&
-            e.target !== trigger &&
-            !trigger.contains(e.target)
-          ) {
-            popup.classList.remove("open");
-            trigger.classList.remove("active");
-          }
-        });
+        const popup = document.getElementById("clockPopup");
+        if (
+          popup &&
+          !popup.contains(e.target) &&
+          !document.getElementById("checkinTrigger").contains(e.target) &&
+          !document.getElementById("checkoutTrigger").contains(e.target)
+        ) {
+          closeClock();
+        }
       });
-
-      // Build clocks when modal opens
-      document
-        .getElementById("addBookingModal")
-        .addEventListener("shown.bs.modal", () => {
-          // clocks build on demand when triggered
-        });
 
       // ── ROOM COUNTS ──
       window.changeRoom = function (cat, type, delta) {
@@ -2100,7 +2075,6 @@
         .getElementById("adminPaid")
         .addEventListener("input", calcBalance);
 
-      // ── generateBookingId ──
       async function generateBookingId() {
         const snap = await getDocs(collection(db, "booking"));
         let maxNumber = 0;
@@ -2549,6 +2523,14 @@
         document.getElementById("mainContent").classList.toggle("shift");
       });
 
+      // MODAL OPEN — init date placeholders
+      document
+        .getElementById("addBookingModal")
+        .addEventListener("shown.bs.modal", () => {
+          initDatePh("adminCheckin", "checkinWrap");
+          initDatePh("adminCheckout", "checkoutWrap");
+        });
+
       // RESET MODAL
       document
         .getElementById("addBookingModal")
@@ -2561,19 +2543,17 @@
               el.className = "counter-val";
             }
           document.getElementById("roomTotalBar").style.display = "none";
-          // Reset clocks
           clockState.checkin = { hour: 12, ampm: "PM" };
           clockState.checkout = { hour: 11, ampm: "AM" };
-          document.getElementById("checkinAM").className = "ampm-btn";
-          document.getElementById("checkinPM").className = "ampm-btn active";
-          document.getElementById("checkoutAM").className = "ampm-btn active";
-          document.getElementById("checkoutPM").className = "ampm-btn";
           document.getElementById("checkinDisplay").textContent = "12 PM";
           document.getElementById("checkoutDisplay").textContent = "11 AM";
           document.getElementById("adminCheckinTime").value = "12:00";
           document.getElementById("adminCheckoutTime").value = "11:00";
           document.getElementById("adminBookingForm").reset();
           document.getElementById("adminBalance").value = "";
+          resetDatePh("adminCheckin", "checkinWrap");
+          resetDatePh("adminCheckout", "checkoutWrap");
+          closeClock();
         });
 
       // ADD BOOKING
