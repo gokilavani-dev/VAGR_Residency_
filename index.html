@@ -2524,11 +2524,13 @@
       });
 
       // MODAL OPEN — init date placeholders
+      // MODAL OPEN
       document
         .getElementById("addBookingModal")
         .addEventListener("shown.bs.modal", () => {
           initDatePh("adminCheckin", "checkinWrap");
           initDatePh("adminCheckout", "checkoutWrap");
+          document.getElementById("sidebarToggle").style.display = "none";
         });
 
       // RESET MODAL
@@ -2542,6 +2544,7 @@
               el.textContent = "0";
               el.className = "counter-val";
             }
+          document.getElementById("sidebarToggle").style.display = "";
           document.getElementById("roomTotalBar").style.display = "none";
           clockState.checkin = { hour: 12, ampm: "PM" };
           clockState.checkout = { hour: 11, ampm: "AM" };
