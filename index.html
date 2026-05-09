@@ -35,7 +35,6 @@
         --gold-light: #e8c97a;
         --deep: #0c1a2e;
         --sidebar-w: 240px;
-        --white: #fff;
         --off: #f8f5f0;
         --text: #1a2535;
         --muted: #6b7a8d;
@@ -51,8 +50,6 @@
         background: #f0f2f5;
         color: var(--text);
       }
-
-      /* ── SIDEBAR ── */
       .sidebar {
         width: var(--sidebar-w);
         background: var(--deep);
@@ -125,8 +122,6 @@
         font-size: 11px;
         color: rgba(255, 255, 255, 0.25);
       }
-
-      /* ── HAMBURGER ── */
       .sidebar-toggle {
         display: none;
         position: fixed;
@@ -144,8 +139,6 @@
         font-size: 16px;
         box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
       }
-
-      /* ── MAIN ── */
       .main {
         margin-left: var(--sidebar-w);
         min-height: 100vh;
@@ -186,8 +179,6 @@
       .content {
         padding: 28px 32px;
       }
-
-      /* ── SECTION ── */
       .section {
         display: none;
         opacity: 0;
@@ -213,8 +204,6 @@
         font-weight: 600;
         color: var(--deep);
       }
-
-      /* ── DATE FILTER ── */
       .date-filter-bar {
         background: #fff;
         border-radius: 4px;
@@ -257,8 +246,6 @@
         display: flex;
         flex-direction: column;
       }
-
-      /* ── STAT CARDS ── */
       .stat-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -334,8 +321,6 @@
         font-size: 20px;
         opacity: 0.18;
       }
-
-      /* ── UPCOMING STRIP on DASHBOARD ── */
       .upcoming-strip {
         background: #fff;
         border-radius: 4px;
@@ -438,8 +423,6 @@
         color: var(--muted);
         padding: 10px 0;
       }
-
-      /* ── TABLE CARD ── */
       .table-card {
         background: #fff;
         border-radius: 4px;
@@ -490,8 +473,6 @@
       .table-card .table tbody tr:last-child td {
         border-bottom: none;
       }
-
-      /* ── CALENDAR ── */
       .cal-wrap {
         background: #fff;
         border-radius: 4px;
@@ -638,8 +619,6 @@
         cursor: pointer;
         padding: 1px 4px;
       }
-
-      /* ── CANCEL ── */
       .cancel-card {
         background: #fff;
         border-radius: 4px;
@@ -744,8 +723,6 @@
       .btn-confirm-cancel:hover {
         background: #b91c1c;
       }
-
-      /* ── BTNS ── */
       .btn-add {
         background: var(--deep);
         color: #fff;
@@ -767,8 +744,6 @@
         background: var(--gold);
         color: var(--deep);
       }
-
-      /* ── MODAL ── */
       .modal-content {
         border: none;
         border-radius: 4px;
@@ -852,8 +827,6 @@
         border-color: var(--text);
         color: var(--text);
       }
-
-      /* ── DETAIL MODAL ── */
       .detail-row {
         display: flex;
         justify-content: space-between;
@@ -897,8 +870,6 @@
         background: #f3f4f6;
         color: #6b7280;
       }
-
-      /* ── ADMIN NOTE ── */
       .admin-note {
         font-size: 12px;
         color: var(--muted);
@@ -908,8 +879,160 @@
         border-radius: 2px;
         margin-top: 4px;
       }
-
-      /* ── RESPONSIVE ── */
+      /* ROOM GRID */
+      .room-grid {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 6px;
+      }
+      .room-grid th {
+        font-size: 11px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-weight: 600;
+        padding: 10px 14px;
+        text-align: center;
+        background: #f8f5f0;
+        border: 1px solid #ede7dc;
+      }
+      .room-grid th:first-child {
+        text-align: left;
+      }
+      .room-grid td {
+        padding: 10px 14px;
+        border: 1px solid #ede7dc;
+        text-align: center;
+        vertical-align: middle;
+      }
+      .room-grid td:first-child {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--deep);
+        text-align: left;
+        background: #fdfcfa;
+        min-width: 80px;
+      }
+      .room-counter {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+      .counter-btn {
+        width: 30px;
+        height: 30px;
+        border: 1.5px solid #e2d9cc;
+        border-radius: 3px;
+        background: #fdfcfa;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.15s;
+        color: var(--text);
+        line-height: 1;
+        padding: 0;
+      }
+      .counter-btn:hover {
+        border-color: var(--gold);
+        background: rgba(201, 168, 76, 0.1);
+        color: var(--deep);
+      }
+      .counter-val {
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--deep);
+        min-width: 22px;
+        text-align: center;
+      }
+      .counter-val.nonzero {
+        color: var(--gold);
+      }
+      .room-total-bar {
+        background: rgba(201, 168, 76, 0.06);
+        border: 1px solid rgba(201, 168, 76, 0.25);
+        border-radius: 3px;
+        padding: 10px 14px;
+        margin-top: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .room-total-bar .breakdown {
+        font-size: 11px;
+        color: var(--muted);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .room-total-bar .breakdown span {
+        background: #fff;
+        border: 1px solid #ede7dc;
+        border-radius: 2px;
+        padding: 3px 8px;
+        font-size: 11px;
+      }
+      .room-total-bar .grand {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--deep);
+      }
+      /* CLOCK */
+      .clock-wrap {
+        border: 1px solid #e2d9cc;
+        border-radius: 3px;
+        background: #fdfcfa;
+        padding: 12px;
+        text-align: center;
+      }
+      .clock-label {
+        font-size: 10px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+      .clock-face {
+        position: relative;
+        width: 160px;
+        height: 160px;
+        margin: 0 auto;
+      }
+      .clock-ampm {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 8px;
+      }
+      .ampm-btn {
+        padding: 4px 14px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-family: "DM Sans", sans-serif;
+        cursor: pointer;
+        transition: 0.15s;
+        border: 1.5px solid #e2d9cc;
+        background: #fdfcfa;
+        color: var(--text);
+      }
+      .ampm-btn.active {
+        border-color: var(--gold);
+        background: var(--gold);
+        color: var(--deep);
+        font-weight: 600;
+      }
+      .clock-display {
+        text-align: center;
+        margin-top: 6px;
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--deep);
+      }
       @media (max-width: 768px) {
         .sidebar {
           left: -240px;
@@ -960,6 +1083,104 @@
           font-size: 34px;
         }
       }
+
+      @media (max-width: 576px) {
+        /* Modal full width */
+        .modal-dialog {
+          margin: 8px;
+        }
+        .modal-body {
+          padding: 16px;
+        }
+        .modal-header {
+          padding: 14px 16px;
+        }
+
+        /* Name + Phone stack vertically */
+        .modal-body .row .col-6 {
+          width: 100% !important;
+          flex: 0 0 100% !important;
+          max-width: 100% !important;
+        }
+
+        /* Room grid compact */
+        .room-grid th,
+        .room-grid td {
+          padding: 6px 8px;
+          font-size: 11px;
+        }
+        .counter-btn {
+          width: 26px;
+          height: 26px;
+          font-size: 15px;
+        }
+        .counter-val {
+          font-size: 14px;
+          min-width: 18px;
+        }
+
+        /* Room total bar */
+        .room-total-bar {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .room-total-bar .breakdown span {
+          font-size: 10px;
+          padding: 2px 6px;
+        }
+
+        /* Clock */
+        .clock-trigger {
+          font-size: 12px;
+          padding: 9px 12px;
+        }
+        .clock-popup {
+          min-width: 180px;
+        }
+        .clock-face {
+          width: 140px !important;
+          height: 140px !important;
+        }
+      }
+
+      /* CLOCK POPUP */
+      .clock-popup {
+        position: absolute;
+        z-index: 9999;
+        background: #fff;
+        border: 1px solid #e2d9cc;
+        border-radius: 6px;
+        box-shadow: 0 8px 32px rgba(12, 26, 46, 0.15);
+        padding: 14px;
+        min-width: 200px;
+        display: none;
+      }
+      .clock-popup.open {
+        display: block;
+      }
+      .clock-trigger {
+        border: 1px solid #e2d9cc;
+        border-radius: 3px;
+        background: #fdfcfa;
+        padding: 10px 14px;
+        cursor: pointer;
+        font-size: 13px;
+        font-family: "DM Sans", sans-serif;
+        width: 100%;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: 0.2s;
+        color: var(--text);
+      }
+      .clock-trigger:hover {
+        border-color: var(--gold);
+      }
+      .clock-trigger.active {
+        border-color: var(--gold);
+        box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.12);
+      }
     </style>
   </head>
   <body>
@@ -1002,27 +1223,24 @@
       </div>
 
       <div class="content">
-        <!-- DATE FILTER BAR (global) -->
         <div class="date-filter-bar">
           <div class="filter-group">
-            <label>From Date</label>
-            <input type="date" id="filterFrom" />
+            <label>From Date</label><input type="date" id="filterFrom" />
           </div>
           <div class="filter-group">
-            <label>To Date</label>
-            <input type="date" id="filterTo" />
+            <label>To Date</label><input type="date" id="filterTo" />
           </div>
           <div class="filter-group">
             <label>Room Type</label>
             <select id="filterRoomType">
               <option value="">All</option>
-              <option value="large">Large (Double-Cot)</option>
-              <option value="small">Small (Single-Cot)</option>
+              <option value="large">Large</option>
+              <option value="small">Small</option>
             </select>
           </div>
         </div>
 
-        <!-- ══ DASHBOARD ══ -->
+        <!-- DASHBOARD -->
         <div id="dashboardSection" class="section active">
           <div class="section-header">
             <div class="section-title">Overview</div>
@@ -1034,8 +1252,6 @@
               <i class="fa fa-plus"></i> Add Booking
             </button>
           </div>
-
-          <!-- Stat Cards -->
           <div class="stat-grid">
             <div class="stat-card gold">
               <div class="stat-label">Total Rooms</div>
@@ -1058,8 +1274,6 @@
               <i class="fa fa-envelope stat-icon"></i>
             </div>
           </div>
-
-          <!-- Upcoming strip -->
           <div class="upcoming-strip">
             <div class="strip-header">
               <i class="fa fa-clock"></i> Today + Next 7 Days
@@ -1068,7 +1282,6 @@
               <div class="strip-scroll" id="upcomingStrip"></div>
             </div>
           </div>
-
           <div class="admin-note">
             <i
               class="fa fa-circle-info"
@@ -1079,7 +1292,7 @@
           </div>
         </div>
 
-        <!-- ══ CALENDAR ══ -->
+        <!-- CALENDAR -->
         <div id="calendarSection" class="section">
           <div class="section-header">
             <div class="section-title">Booking Calendar</div>
@@ -1120,7 +1333,7 @@
           </div>
         </div>
 
-        <!-- ══ BOOKINGS ══ -->
+        <!-- BOOKINGS -->
         <div id="bookingsSection" class="section">
           <div class="section-header">
             <div class="section-title">Bookings</div>
@@ -1136,10 +1349,10 @@
                   <tr>
                     <th>Name</th>
                     <th>Phone</th>
-                    <th>Room</th>
                     <th>Rooms</th>
                     <th>Check-in</th>
                     <th>Check-out</th>
+                    <th>Total</th>
                     <th>Created At</th>
                   </tr>
                 </thead>
@@ -1149,7 +1362,7 @@
           </div>
         </div>
 
-        <!-- ══ CONTACTS ══ -->
+        <!-- CONTACTS -->
         <div id="contactsSection" class="section">
           <div class="section-header">
             <div class="section-title">Contacts</div>
@@ -1175,7 +1388,7 @@
           </div>
         </div>
 
-        <!-- ══ CANCEL ══ -->
+        <!-- CANCEL -->
         <div id="cancelSection" class="section">
           <div class="section-header">
             <div class="section-title">Cancel Booking</div>
@@ -1188,8 +1401,8 @@
             </p>
             <div class="row g-3">
               <div class="col-md-5">
-                <label class="form-lbl">Phone Number</label>
-                <input
+                <label class="form-lbl">Phone Number</label
+                ><input
                   type="tel"
                   id="cancelPhone"
                   class="inp"
@@ -1197,8 +1410,8 @@
                 />
               </div>
               <div class="col-md-4">
-                <label class="form-lbl">Check-in Date</label>
-                <input type="date" id="cancelCheckin" class="inp" />
+                <label class="form-lbl">Check-in Date</label
+                ><input type="date" id="cancelCheckin" class="inp" />
               </div>
               <div class="col-md-3 d-flex align-items-end">
                 <button
@@ -1214,13 +1427,11 @@
           </div>
         </div>
       </div>
-      <!-- /content -->
     </div>
-    <!-- /main -->
 
     <!-- ADD BOOKING MODAL -->
     <div class="modal fade" id="addBookingModal" tabindex="-1">
-      <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title">Add Booking</h5>
@@ -1232,28 +1443,30 @@
           </div>
           <div class="modal-body">
             <form id="adminBookingForm">
-              <div class="mb-3">
-                <label class="form-label">Name</label
-                ><input
-                  type="text"
-                  id="adminName"
-                  class="form-control"
-                  required
-                />
-              </div>
-              <div class="mb-3">
-                <label class="form-label">Phone</label
-                ><input
-                  type="text"
-                  id="adminPhone"
-                  class="form-control"
-                  required
-                />
+              <div class="row g-3 mb-3">
+                <div class="col-6">
+                  <label class="form-label">Name</label
+                  ><input
+                    type="text"
+                    id="adminName"
+                    class="form-control"
+                    required
+                  />
+                </div>
+                <div class="col-6">
+                  <label class="form-label">Phone</label
+                  ><input
+                    type="text"
+                    id="adminPhone"
+                    class="form-control"
+                    required
+                  />
+                </div>
               </div>
               <div class="row g-3 mb-3">
                 <div class="col-6">
-                  <label class="form-label">Check-in Date</label
-                  ><input
+                  <label class="form-label">Check-in Date</label>
+                  <input
                     type="date"
                     id="adminCheckin"
                     class="form-control"
@@ -1261,19 +1474,79 @@
                   />
                 </div>
                 <div class="col-6">
-                  <label class="form-label">Check-in Time</label
-                  ><input
-                    type="time"
-                    id="adminCheckinTime"
-                    class="form-control"
-                    value="12:00"
-                  />
+                  <label class="form-label">Check-in Time</label>
+                  <div style="position: relative">
+                    <button
+                      type="button"
+                      class="clock-trigger"
+                      id="checkinTrigger"
+                      onclick="toggleClock('checkin')"
+                    >
+                      <span id="checkinDisplay">12 PM</span>
+                      <i
+                        class="fa fa-clock"
+                        style="color: var(--muted); font-size: 12px"
+                      ></i>
+                    </button>
+                    <div class="clock-popup" id="checkinPopup">
+                      <div
+                        class="clock-label"
+                        style="
+                          font-size: 10px;
+                          letter-spacing: 1px;
+                          text-transform: uppercase;
+                          color: var(--muted);
+                          margin-bottom: 8px;
+                          text-align: center;
+                        "
+                      >
+                        Select Hour
+                      </div>
+                      <div
+                        class="clock-face"
+                        id="checkinClockFace"
+                        style="
+                          position: relative;
+                          width: 160px;
+                          height: 160px;
+                          margin: 0 auto;
+                        "
+                      ></div>
+                      <div
+                        class="clock-ampm"
+                        style="
+                          display: flex;
+                          justify-content: center;
+                          gap: 8px;
+                          margin-top: 8px;
+                        "
+                      >
+                        <button
+                          type="button"
+                          class="ampm-btn"
+                          id="checkinAM"
+                          onclick="setAmPm('checkin', 'AM')"
+                        >
+                          AM
+                        </button>
+                        <button
+                          type="button"
+                          class="ampm-btn active"
+                          id="checkinPM"
+                          onclick="setAmPm('checkin', 'PM')"
+                        >
+                          PM
+                        </button>
+                      </div>
+                    </div>
+                    <input type="hidden" id="adminCheckinTime" value="12:00" />
+                  </div>
                 </div>
               </div>
               <div class="row g-3 mb-3">
                 <div class="col-6">
-                  <label class="form-label">Check-out Date</label
-                  ><input
+                  <label class="form-label">Check-out Date</label>
+                  <input
                     type="date"
                     id="adminCheckout"
                     class="form-control"
@@ -1281,42 +1554,206 @@
                   />
                 </div>
                 <div class="col-6">
-                  <label class="form-label">Check-out Time</label
-                  ><input
-                    type="time"
-                    id="adminCheckoutTime"
-                    class="form-control"
-                    value="11:00"
-                  />
+                  <label class="form-label">Check-out Time</label>
+                  <div style="position: relative">
+                    <button
+                      type="button"
+                      class="clock-trigger"
+                      id="checkoutTrigger"
+                      onclick="toggleClock('checkout')"
+                    >
+                      <span id="checkoutDisplay">11 AM</span>
+                      <i
+                        class="fa fa-clock"
+                        style="color: var(--muted); font-size: 12px"
+                      ></i>
+                    </button>
+                    <div class="clock-popup" id="checkoutPopup">
+                      <div
+                        class="clock-label"
+                        style="
+                          font-size: 10px;
+                          letter-spacing: 1px;
+                          text-transform: uppercase;
+                          color: var(--muted);
+                          margin-bottom: 8px;
+                          text-align: center;
+                        "
+                      >
+                        Select Hour
+                      </div>
+                      <div
+                        class="clock-face"
+                        id="checkoutClockFace"
+                        style="
+                          position: relative;
+                          width: 160px;
+                          height: 160px;
+                          margin: 0 auto;
+                        "
+                      ></div>
+                      <div
+                        class="clock-ampm"
+                        style="
+                          display: flex;
+                          justify-content: center;
+                          gap: 8px;
+                          margin-top: 8px;
+                        "
+                      >
+                        <button
+                          type="button"
+                          class="ampm-btn active"
+                          id="checkoutAM"
+                          onclick="setAmPm('checkout', 'AM')"
+                        >
+                          AM
+                        </button>
+                        <button
+                          type="button"
+                          class="ampm-btn"
+                          id="checkoutPM"
+                          onclick="setAmPm('checkout', 'PM')"
+                        >
+                          PM
+                        </button>
+                      </div>
+                    </div>
+                    <input type="hidden" id="adminCheckoutTime" value="11:00" />
+                  </div>
                 </div>
               </div>
+
+              <!-- ROOM GRID -->
               <div class="mb-3">
-                <label class="form-label">Room Category</label
-                ><select id="adminRoomCategory" class="form-control" required>
-                  <option value="Large(Double-Cot)">Large (Double-Cot)</option>
-                  <option value="Small(Single-Cot)">Small (Single-Cot)</option>
-                </select>
+                <label class="form-label">Rooms — Select Count per Type</label>
+                <table class="room-grid">
+                  <thead>
+                    <tr>
+                      <th>Category</th>
+                      <th>
+                        ❄️ AC<br /><small
+                          style="
+                            font-size: 10px;
+                            color: var(--muted);
+                            text-transform: none;
+                            letter-spacing: 0;
+                            font-weight: 400;
+                          "
+                          >Large ₹2300 · Small ₹1800</small
+                        >
+                      </th>
+                      <th>
+                        🌀 Non-AC<br /><small
+                          style="
+                            font-size: 10px;
+                            color: var(--muted);
+                            text-transform: none;
+                            letter-spacing: 0;
+                            font-weight: 400;
+                          "
+                          >Large ₹2000 · Small ₹1500</small
+                        >
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>🏠 Large</td>
+                      <td>
+                        <div class="room-counter">
+                          <button
+                            type="button"
+                            class="counter-btn"
+                            onclick="changeRoom('large', 'ac', -1)"
+                          >
+                            −</button
+                          ><span class="counter-val" id="cnt-large-ac">0</span
+                          ><button
+                            type="button"
+                            class="counter-btn"
+                            onclick="changeRoom('large', 'ac', 1)"
+                          >
+                            +
+                          </button>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="room-counter">
+                          <button
+                            type="button"
+                            class="counter-btn"
+                            onclick="changeRoom('large', 'nonac', -1)"
+                          >
+                            −</button
+                          ><span class="counter-val" id="cnt-large-nonac"
+                            >0</span
+                          ><button
+                            type="button"
+                            class="counter-btn"
+                            onclick="changeRoom('large', 'nonac', 1)"
+                          >
+                            +
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>🛏 Small</td>
+                      <td>
+                        <div class="room-counter">
+                          <button
+                            type="button"
+                            class="counter-btn"
+                            onclick="changeRoom('small', 'ac', -1)"
+                          >
+                            −</button
+                          ><span class="counter-val" id="cnt-small-ac">0</span
+                          ><button
+                            type="button"
+                            class="counter-btn"
+                            onclick="changeRoom('small', 'ac', 1)"
+                          >
+                            +
+                          </button>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="room-counter">
+                          <button
+                            type="button"
+                            class="counter-btn"
+                            onclick="changeRoom('small', 'nonac', -1)"
+                          >
+                            −</button
+                          ><span class="counter-val" id="cnt-small-nonac"
+                            >0</span
+                          ><button
+                            type="button"
+                            class="counter-btn"
+                            onclick="changeRoom('small', 'nonac', 1)"
+                          >
+                            +
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div
+                  class="room-total-bar"
+                  id="roomTotalBar"
+                  style="display: none"
+                >
+                  <div class="breakdown" id="roomBreakdown"></div>
+                  <div class="grand" id="roomGrand"></div>
+                </div>
               </div>
-              <div class="mb-3">
-                <label class="form-label">Room Type</label
-                ><select id="adminRoomType" class="form-control" required>
-                  <option value="AC Room">AC Room</option>
-                  <option value="Non-AC Room">Non-AC Room</option>
-                </select>
-              </div>
-              <div class="mb-3">
-                <label class="form-label">Rooms Count</label
-                ><input
-                  type="number"
-                  id="adminRooms"
-                  min="1"
-                  class="form-control"
-                  required
-                />
-              </div>
+
+              <!-- Amount -->
               <div class="row g-3 mb-1">
                 <div class="col-4">
-                  <label class="form-label">Total Amount (&#8377;)</label
+                  <label class="form-label">Total (₹)</label
                   ><input
                     type="number"
                     id="adminTotal"
@@ -1326,18 +1763,17 @@
                   />
                 </div>
                 <div class="col-4">
-                  <label class="form-label">Paid Amount (&#8377;)</label
+                  <label class="form-label">Paid (₹)</label
                   ><input
                     type="number"
                     id="adminPaid"
                     class="form-control"
                     placeholder="0"
                     min="0"
-                    oninput="calcBalance()"
                   />
                 </div>
                 <div class="col-4">
-                  <label class="form-label">Balance (&#8377;)</label
+                  <label class="form-label">Balance (₹)</label
                   ><input
                     type="number"
                     id="adminBalance"
@@ -1395,46 +1831,296 @@
         where,
         deleteDoc,
         doc,
-        runTransaction,
-        orderBy,
-        limit,
       } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
       const app = initializeApp(firebaseConfig);
-      async function generateBookingId() {
-        const bookingsRef = collection(db, "booking");
-        const snap = await getDocs(bookingsRef);
+      const db = getFirestore(app);
 
+      const fmt = (d) =>
+        d instanceof Date ? d.toISOString().split("T")[0] : d;
+      const todayStr = () => fmt(new Date());
+      const fmtDate = (s) => (s ? s.split("-").reverse().join("-") : "");
+      const fmtTime = (t) => {
+        if (!t) return "";
+        const [h] = t.split(":").map(Number);
+        return `${h % 12 || 12} ${h >= 12 ? "PM" : "AM"}`;
+      };
+
+      const PRICE = {
+        large: { ac: 2300, nonac: 2000 },
+        small: { ac: 1800, nonac: 1500 },
+      };
+      const roomCounts = {
+        large: { ac: 0, nonac: 0 },
+        small: { ac: 0, nonac: 0 },
+      };
+
+      // ── ANALOG CLOCK ──
+      const clockState = {
+        checkin: { hour: 12, ampm: "PM" },
+        checkout: { hour: 11, ampm: "AM" },
+      };
+
+      function buildClock(id) {
+        const state = clockState[id];
+        const face = document.getElementById(id + "ClockFace");
+        face.innerHTML = "";
+        const SIZE = 160,
+          cx = SIZE / 2,
+          cy = SIZE / 2,
+          R = 62;
+
+        const svg = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "svg",
+        );
+        svg.setAttribute("width", SIZE);
+        svg.setAttribute("height", SIZE);
+        svg.style.cssText = "position:absolute;top:0;left:0";
+
+        // Background circle
+        const bg = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "circle",
+        );
+        bg.setAttribute("cx", cx);
+        bg.setAttribute("cy", cy);
+        bg.setAttribute("r", R + 14);
+        bg.setAttribute("fill", "#f8f5f0");
+        bg.setAttribute("stroke", "#ede7dc");
+        bg.setAttribute("stroke-width", "1");
+        svg.appendChild(bg);
+
+        // Hand
+        const selH =
+          state.ampm === "AM"
+            ? state.hour === 12
+              ? 0
+              : state.hour
+            : state.hour === 12
+              ? 12
+              : state.hour;
+        const angle = (selH / 12) * 2 * Math.PI - Math.PI / 2;
+        const hx = cx + R * 0.6 * Math.cos(angle),
+          hy = cy + R * 0.6 * Math.sin(angle);
+        const hand = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "line",
+        );
+        hand.setAttribute("x1", cx);
+        hand.setAttribute("y1", cy);
+        hand.setAttribute("x2", hx);
+        hand.setAttribute("y2", hy);
+        hand.setAttribute("stroke", "var(--gold)");
+        hand.setAttribute("stroke-width", "2.5");
+        hand.setAttribute("stroke-linecap", "round");
+        svg.appendChild(hand);
+
+        // Center dot
+        const dot = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "circle",
+        );
+        dot.setAttribute("cx", cx);
+        dot.setAttribute("cy", cy);
+        dot.setAttribute("r", "4");
+        dot.setAttribute("fill", "var(--gold)");
+        svg.appendChild(dot);
+
+        face.appendChild(svg);
+
+        // Hour buttons
+        for (let h = 1; h <= 12; h++) {
+          const a = (h / 12) * 2 * Math.PI - Math.PI / 2;
+          const x = cx + R * Math.cos(a),
+            y = cy + R * Math.sin(a);
+          const isSel = h === state.hour;
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.textContent = h;
+          btn.style.cssText = `
+            position:absolute;width:28px;height:28px;
+            left:${x - 14}px;top:${y - 14}px;
+            border-radius:50%;
+            border:${isSel ? "none" : "1px solid #e2d9cc"};
+            background:${isSel ? "var(--gold)" : "#fff"};
+            color:${isSel ? "var(--deep)" : "var(--text)"};
+            font-weight:${isSel ? "700" : "400"};
+            font-size:11px;cursor:pointer;
+            font-family:'DM Sans',sans-serif;
+            display:flex;align-items:center;justify-content:center;
+            box-shadow:${isSel ? "0 2px 8px rgba(201,168,76,.35)" : "none"};
+            transition:.1s;
+          `;
+          btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            clockState[id].hour = h;
+            updateClockVal(id);
+            buildClock(id);
+          });
+          face.appendChild(btn);
+        }
+      }
+
+      function updateClockVal(id, closePopup = false) {
+        const { hour, ampm } = clockState[id];
+        let h24 = hour;
+        if (ampm === "AM" && hour === 12) h24 = 0;
+        if (ampm === "PM" && hour !== 12) h24 = hour + 12;
+        const val = `${String(h24).padStart(2, "0")}:00`;
+        document.getElementById(
+          `admin${id === "checkin" ? "Checkin" : "Checkout"}Time`,
+        ).value = val;
+        document.getElementById(id + "Display").textContent = `${hour} ${ampm}`;
+        // Close popup only when AM/PM selected
+        if (closePopup) {
+          document.getElementById(id + "Popup").classList.remove("open");
+          document.getElementById(id + "Trigger").classList.remove("active");
+        }
+        updateRoomTotal();
+      }
+
+      window.setAmPm = function (id, ampm) {
+        clockState[id].ampm = ampm;
+        document.getElementById(id + "AM").className =
+          "ampm-btn" + (ampm === "AM" ? " active" : "");
+        document.getElementById(id + "PM").className =
+          "ampm-btn" + (ampm === "PM" ? " active" : "");
+        updateClockVal(id, true); // true = close popup
+        buildClock(id);
+      };
+
+      window.toggleClock = function (id) {
+        const popup = document.getElementById(id + "Popup");
+        const trigger = document.getElementById(id + "Trigger");
+        const other = id === "checkin" ? "checkout" : "checkin";
+        // Close other
+        document.getElementById(other + "Popup").classList.remove("open");
+        document.getElementById(other + "Trigger").classList.remove("active");
+        // Toggle this
+        popup.classList.toggle("open");
+        trigger.classList.toggle("active");
+        if (popup.classList.contains("open")) buildClock(id);
+      };
+
+      // Close on outside click
+      document.addEventListener("click", (e) => {
+        ["checkin", "checkout"].forEach((id) => {
+          const popup = document.getElementById(id + "Popup");
+          const trigger = document.getElementById(id + "Trigger");
+          if (
+            popup &&
+            !popup.contains(e.target) &&
+            e.target !== trigger &&
+            !trigger.contains(e.target)
+          ) {
+            popup.classList.remove("open");
+            trigger.classList.remove("active");
+          }
+        });
+      });
+
+      // Build clocks when modal opens
+      document
+        .getElementById("addBookingModal")
+        .addEventListener("shown.bs.modal", () => {
+          // clocks build on demand when triggered
+        });
+
+      // ── ROOM COUNTS ──
+      window.changeRoom = function (cat, type, delta) {
+        roomCounts[cat][type] = Math.max(0, roomCounts[cat][type] + delta);
+        const el = document.getElementById(`cnt-${cat}-${type}`);
+        el.textContent = roomCounts[cat][type];
+        el.className =
+          "counter-val" + (roomCounts[cat][type] > 0 ? " nonzero" : "");
+        updateRoomTotal();
+      };
+
+      function updateRoomTotal() {
+        const checkin = document.getElementById("adminCheckin").value;
+        const checkout = document.getElementById("adminCheckout").value;
+        const nights =
+          checkin && checkout
+            ? Math.max(
+                (new Date(checkout) - new Date(checkin)) /
+                  (1000 * 60 * 60 * 24),
+                1,
+              )
+            : 1;
+        let total = 0;
+        const parts = [];
+        for (const cat of ["large", "small"])
+          for (const type of ["ac", "nonac"]) {
+            const n = roomCounts[cat][type];
+            if (n > 0) {
+              const sub = PRICE[cat][type] * n * nights;
+              total += sub;
+              parts.push(
+                `${n} ${cat === "large" ? "Lg" : "Sm"} ${type === "ac" ? "AC" : "Non-AC"} × ${nights}N = ₹${sub.toLocaleString("en-IN")}`,
+              );
+            }
+          }
+        const totalRooms = Object.values(roomCounts)
+          .flatMap(Object.values)
+          .reduce((a, b) => a + b, 0);
+        const bar = document.getElementById("roomTotalBar");
+        if (totalRooms > 0) {
+          bar.style.display = "flex";
+          document.getElementById("roomBreakdown").innerHTML = parts
+            .map((p) => `<span>${p}</span>`)
+            .join("");
+          document.getElementById("roomGrand").textContent =
+            `Grand Total: ₹${total.toLocaleString("en-IN")}`;
+          document.getElementById("adminTotal").value = total;
+          calcBalance();
+        } else {
+          bar.style.display = "none";
+          document.getElementById("adminTotal").value = "";
+          document.getElementById("adminBalance").value = "";
+        }
+      }
+
+      window.calcBalance = function () {
+        const total =
+          parseFloat(document.getElementById("adminTotal").value) || 0;
+        const paid =
+          parseFloat(document.getElementById("adminPaid").value) || 0;
+        document.getElementById("adminBalance").value = (total - paid).toFixed(
+          2,
+        );
+      };
+      ["adminCheckin", "adminCheckout"].forEach((id) =>
+        document.getElementById(id).addEventListener("change", updateRoomTotal),
+      );
+      document
+        .getElementById("adminTotal")
+        .addEventListener("input", calcBalance);
+      document
+        .getElementById("adminPaid")
+        .addEventListener("input", calcBalance);
+
+      // ── generateBookingId ──
+      async function generateBookingId() {
+        const snap = await getDocs(collection(db, "booking"));
         let maxNumber = 0;
         snap.forEach((d) => {
           const n = d.data().number;
           if (n && n > maxNumber) maxNumber = n;
-        });
-
-        // existing bookingId-லிருந்தும் number எடு (VAGR-2026-0002 → 2)
-        snap.forEach((d) => {
           const bid = d.data().bookingId || "";
           const match = bid.match(/(\d+)$/);
           if (match) {
-            const n = parseInt(match[1]);
-            if (n > maxNumber) maxNumber = n;
+            const n2 = parseInt(match[1]);
+            if (n2 > maxNumber) maxNumber = n2;
           }
         });
-
         const newNumber = maxNumber + 1;
         return {
           id: `VAGR-${new Date().getFullYear()}-${String(newNumber).padStart(4, "0")}`,
           number: newNumber,
         };
       }
-      const db = getFirestore(app);
 
-      // ── helpers ──
-      const fmt = (d) =>
-        d instanceof Date ? d.toISOString().split("T")[0] : d;
-      const todayStr = () => fmt(new Date());
-
-      // ── set default dates to today ──
       const filterFrom = document.getElementById("filterFrom");
       const filterTo = document.getElementById("filterTo");
       filterFrom.value = todayStr();
@@ -1444,7 +2130,6 @@
         TOTAL_SMALL = 6;
       let allBookings = [];
 
-      // ── REALTIME BOOKINGS ──
       onSnapshot(collection(db, "booking"), (snap) => {
         allBookings = [];
         snap.forEach((d) => allBookings.push({ _id: d.id, ...d.data() }));
@@ -1453,9 +2138,7 @@
         renderCalendar();
       });
 
-      // ── REALTIME CONTACTS ──
       let allContacts = [];
-
       onSnapshot(collection(db, "contacts"), (snap) => {
         allContacts = [];
         snap.forEach((d) => allContacts.push(d.data()));
@@ -1463,45 +2146,36 @@
       });
 
       function renderContacts() {
-        const from = document.getElementById("filterFrom").value;
-        const to = document.getElementById("filterTo").value;
+        const from = filterFrom.value,
+          to = filterTo.value;
         const tb = document.getElementById("contactsTable");
         tb.innerHTML = "";
-
         const filtered = allContacts.filter((x) => {
           if (!x.createdAt) return true;
-          // createdAt can be ISO string or timestamp number
-          const dateStr =
+          const ds =
             typeof x.createdAt === "number"
               ? new Date(x.createdAt).toISOString().split("T")[0]
               : String(x.createdAt).split("T")[0];
-          if (from && dateStr < from) return false;
-          if (to && dateStr > to) return false;
+          if (from && ds < from) return false;
+          if (to && ds > to) return false;
           return true;
         });
-
         filtered.forEach((x) => {
-          const dateStr = x.createdAt
-            ? typeof x.createdAt === "number"
-              ? new Date(x.createdAt).toLocaleString()
-              : new Date(x.createdAt).toLocaleString()
-            : "";
-          tb.innerHTML += `<tr><td>${x.name || ""}</td><td>${x.phone || ""}</td><td>${x.email || ""}</td><td>${x.message || ""}</td><td>${dateStr}</td></tr>`;
+          tb.innerHTML += `<tr><td>${x.name || ""}</td><td>${x.phone || ""}</td><td>${x.email || ""}</td><td>${x.message || ""}</td><td>${x.createdAt ? new Date(x.createdAt).toLocaleString("en-IN") : ""}</td></tr>`;
         });
-
         document.getElementById("totalContacts").innerText = filtered.length;
       }
 
-      // ── ORIGINAL FILTER LOGIC ──
       function bookingMatchesFilters(b, from, to, rt) {
         if (!b.checkin || !b.checkout) return false;
         if (from && b.checkout < from) return false;
         if (to && b.checkin > to) return false;
+        if (!rt) return true;
+        if (b.roomDetails)
+          return Object.keys(b.roomDetails).some((k) => k.startsWith(rt));
         const cat = (b.roomCategory || "").toLowerCase();
-        if (rt === "large" && !(cat === "large" || cat.includes("large")))
-          return false;
-        if (rt === "small" && !(cat === "small" || cat.includes("small")))
-          return false;
+        if (rt === "large" && !cat.includes("large")) return false;
+        if (rt === "small" && !cat.includes("small")) return false;
         return true;
       }
 
@@ -1515,10 +2189,19 @@
         let bL = 0,
           bS = 0;
         filtered.forEach((b) => {
-          const n = Number(b.rooms) || 0,
-            cat = (b.roomCategory || "").toLowerCase();
-          if (cat === "large" || cat.includes("large")) bL += n;
-          if (cat === "small" || cat.includes("small")) bS += n;
+          if (b.roomDetails) {
+            bL +=
+              (b.roomDetails["large-ac"] || 0) +
+              (b.roomDetails["large-nonac"] || 0);
+            bS +=
+              (b.roomDetails["small-ac"] || 0) +
+              (b.roomDetails["small-nonac"] || 0);
+          } else {
+            const n = Number(b.rooms) || 0,
+              cat = (b.roomCategory || "").toLowerCase();
+            if (cat.includes("large")) bL += n;
+            if (cat.includes("small")) bS += n;
+          }
         });
         let total, booked;
         if (!rt) {
@@ -1547,40 +2230,41 @@
         }),
       );
 
-      // ── BOOKINGS TABLE ──
+      function roomSummary(b) {
+        if (b.roomDetails) {
+          const parts = [];
+          if (b.roomDetails["large-ac"])
+            parts.push(`${b.roomDetails["large-ac"]} Lg AC`);
+          if (b.roomDetails["large-nonac"])
+            parts.push(`${b.roomDetails["large-nonac"]} Lg Non-AC`);
+          if (b.roomDetails["small-ac"])
+            parts.push(`${b.roomDetails["small-ac"]} Sm AC`);
+          if (b.roomDetails["small-nonac"])
+            parts.push(`${b.roomDetails["small-nonac"]} Sm Non-AC`);
+          return parts.join(", ") || "—";
+        }
+        const cat = (b.roomCategory || "").toLowerCase().includes("large")
+          ? "Large"
+          : "Small";
+        const type = (b.roomType || "").toLowerCase().includes("non")
+          ? "Non-AC"
+          : "AC";
+        return `${b.rooms || 1} ${cat} ${type}`;
+      }
+
       function renderBookings(list) {
         const tb = document.getElementById("bookingTable");
         tb.innerHTML = "";
         list.forEach((b) => {
-          const cat = (b.roomCategory || "").toLowerCase().includes("large")
-            ? "Large"
-            : "Small";
-          const type = (b.roomType || "").toLowerCase().includes("non")
-            ? "Non-AC"
-            : "AC";
           const tr = document.createElement("tr");
-          tr.innerHTML = `<td><strong>${b.name || ""}</strong></td><td>${b.phone || ""}</td><td>${cat} · ${type}</td><td>${b.rooms || 1}</td><td>${b.checkin || ""}</td><td>${b.checkout || ""}</td><td>${b.createdAt ? new Date(b.createdAt).toLocaleDateString() : ""}</td>`;
+          tr.innerHTML = `<td><strong>${b.name || ""}</strong></td><td>${b.phone || ""}</td><td style="font-size:12px">${roomSummary(b)}</td><td>${fmtDate(b.checkin)}</td><td>${fmtDate(b.checkout)}</td><td>₹${b.totalAmount != null ? Number(b.totalAmount).toLocaleString("en-IN") : "—"}</td><td>${b.createdAt ? new Date(b.createdAt).toLocaleDateString("en-IN") : ""}</td>`;
           tr.addEventListener("click", () => showBookingDetail(b));
           tb.appendChild(tr);
         });
       }
 
-      // ── BOOKING DETAIL MODAL ──
       function showBookingDetail(b) {
         const today = todayStr();
-        const fmtTime = (t) => {
-          if (!t) return "";
-          const [h, m] = t.split(":").map(Number);
-          const ampm = h >= 12 ? "PM" : "AM";
-          const h12 = h % 12 || 12;
-          return `${h12}:${String(m).padStart(2, "0")} ${ampm}`;
-        };
-        const cat = (b.roomCategory || "").toLowerCase().includes("large")
-          ? "Large (Double-Cot)"
-          : "Small (Single-Cot)";
-        const type = (b.roomType || "").toLowerCase().includes("non")
-          ? "Non-AC"
-          : "AC";
         let status = "upcoming";
         if (b.checkin <= today && b.checkout > today) status = "active";
         if (b.checkout <= today) status = "done";
@@ -1589,54 +2273,64 @@
           upcoming: "Upcoming",
           done: "Checked Out",
         };
-
+        let roomRows = "";
+        if (b.roomDetails) {
+          const labels = {
+            "large-ac": "Large AC",
+            "large-nonac": "Large Non-AC",
+            "small-ac": "Small AC",
+            "small-nonac": "Small Non-AC",
+          };
+          for (const [k, v] of Object.entries(b.roomDetails)) {
+            if (v > 0)
+              roomRows += `<div class="detail-row"><span class="lbl">${labels[k] || k}</span><span class="val">${v} room${v > 1 ? "s" : ""}</span></div>`;
+          }
+        } else {
+          const cat = (b.roomCategory || "").toLowerCase().includes("large")
+            ? "Large"
+            : "Small";
+          const type = (b.roomType || "").toLowerCase().includes("non")
+            ? "Non-AC"
+            : "AC";
+          roomRows = `<div class="detail-row"><span class="lbl">${cat} ${type}</span><span class="val">${b.rooms || 1} room${(b.rooms || 1) > 1 ? "s" : ""}</span></div>`;
+        }
         document.getElementById("bookingDetailBody").innerHTML = `
-    <div style="margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;">
-      <div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--deep)">${b.name || ""}</div>
-        <div style="font-size:12px;color:var(--muted);margin-top:2px">${b.phone || ""}</div>
-      </div>
-      <span class="status-pill ${status}">${statusLabel[status]}</span>
-    </div>
-    <div class="detail-row"><span class="lbl">Booking ID</span><span class="val">${b.bookingId || "—"}</span></div>
-    <div class="detail-row"><span class="lbl">Room Category</span><span class="val">${cat}</span></div>
-    <div class="detail-row"><span class="lbl">Room Type</span><span class="val">${type}</span></div>
-    <div class="detail-row"><span class="lbl">No. of Rooms</span><span class="val">${b.rooms || 1}</span></div>
-    <div class="detail-row"><span class="lbl">Check-in</span><span class="val">${b.checkin || ""} ${fmtTime(b.checkinTime) ? '<span style="background:rgba(201,168,76,.12);color:var(--gold);padding:2px 8px;border-radius:2px;font-size:11px;margin-left:6px">' + fmtTime(b.checkinTime) + "</span>" : ""}</span></div>
-    <div class="detail-row"><span class="lbl">Check-out</span><span class="val">${b.checkout || ""} ${fmtTime(b.checkoutTime) ? '<span style="background:rgba(201,168,76,.12);color:var(--gold);padding:2px 8px;border-radius:2px;font-size:11px;margin-left:6px">' + fmtTime(b.checkoutTime) + "</span>" : ""}</span></div>
-    <div class="detail-row"><span class="lbl">Total Amount</span><span class="val">&#8377; ${b.totalAmount != null ? Number(b.totalAmount).toLocaleString() : b.price ? b.price.toLocaleString() : "—"}</span></div>
-    <div class="detail-row"><span class="lbl">Paid Amount</span><span class="val" style="color:#16a34a">&#8377; ${b.paidAmount != null ? Number(b.paidAmount).toLocaleString() : b.price != null ? Number(b.price).toLocaleString() : "—"}</span></div>
-    <div class="detail-row"><span class="lbl">Balance Due</span><span class="val" style="color:${(b.balance || 0) > 0 ? "#dc2626" : "#16a34a"}">&#8377; ${b.balance != null ? Number(b.balance).toLocaleString() : b.totalAmount != null && b.price != null ? (b.totalAmount - b.price).toLocaleString() : "0"}</span></div>
-    <div class="detail-row"><span class="lbl">Payment ID</span><span class="val" style="font-size:11px">${b.paymentId || "—"}</span></div>
-    <div class="detail-row"><span class="lbl">Booked On</span><span class="val">${b.createdAt ? new Date(b.createdAt).toLocaleString() : ""}</span></div>
-  `;
+          <div style="margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;">
+            <div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--deep)">${b.name || ""}</div>
+              <div style="font-size:12px;color:var(--muted);margin-top:2px">${b.phone || ""}</div>
+            </div>
+            <span class="status-pill ${status}">${statusLabel[status]}</span>
+          </div>
+          <div class="detail-row"><span class="lbl">Booking ID</span><span class="val">${b.bookingId || "—"}</span></div>
+          ${roomRows}
+          <div class="detail-row"><span class="lbl">Check-in</span><span class="val">${fmtDate(b.checkin)} ${b.checkinTime ? '<span style="background:rgba(201,168,76,.12);color:var(--gold);padding:2px 8px;border-radius:2px;font-size:11px;margin-left:6px">' + fmtTime(b.checkinTime) + "</span>" : ""}</span></div>
+          <div class="detail-row"><span class="lbl">Check-out</span><span class="val">${fmtDate(b.checkout)} ${b.checkoutTime ? '<span style="background:rgba(201,168,76,.12);color:var(--gold);padding:2px 8px;border-radius:2px;font-size:11px;margin-left:6px">' + fmtTime(b.checkoutTime) + "</span>" : ""}</span></div>
+          <div class="detail-row"><span class="lbl">Total Amount</span><span class="val">₹ ${b.totalAmount != null ? Number(b.totalAmount).toLocaleString("en-IN") : b.price ? b.price.toLocaleString("en-IN") : "—"}</span></div>
+          <div class="detail-row"><span class="lbl">Paid Amount</span><span class="val" style="color:#16a34a">₹ ${b.paidAmount != null ? Number(b.paidAmount).toLocaleString("en-IN") : b.price != null ? Number(b.price).toLocaleString("en-IN") : "—"}</span></div>
+          <div class="detail-row"><span class="lbl">Balance Due</span><span class="val" style="color:${(b.balance || 0) > 0 ? "#dc2626" : "#16a34a"}">₹ ${b.balance != null ? Number(b.balance).toLocaleString("en-IN") : "0"}</span></div>
+          <div class="detail-row"><span class="lbl">Payment ID</span><span class="val" style="font-size:11px">${b.paymentId || "—"}</span></div>
+          <div class="detail-row"><span class="lbl">Booked On</span><span class="val">${b.createdAt ? new Date(b.createdAt).toLocaleString("en-IN") : ""}</span></div>`;
         new bootstrap.Modal(
           document.getElementById("bookingDetailModal"),
         ).show();
       }
 
-      // ── UPCOMING STRIP ──
       function renderUpcoming() {
         const container = document.getElementById("upcomingStrip");
         const today = todayStr();
         const end = fmt(new Date(Date.now() + 7 * 24 * 60 * 60 * 1000));
-
         const list = allBookings
           .filter((b) => b.checkout >= today && b.checkin <= end)
           .sort((a, b) => a.checkin.localeCompare(b.checkin));
-
         if (!list.length) {
           container.innerHTML = `<div class="no-strip"><i class="fa fa-calendar-check" style="margin-right:6px;color:#e2d9cc"></i>No bookings in the next 7 days</div>`;
           return;
         }
-
         container.innerHTML = list
           .map((b) => {
-            const cat = (b.roomCategory || "").toLowerCase().includes("large")
-              ? "Large"
-              : "Small";
-            const isCin = b.checkin === today;
-            const isCout = b.checkout === today;
+            const isCin = b.checkin === today,
+              isCout = b.checkout === today;
             const cls = isCin ? "cin" : isCout ? "cout" : "";
             const badge = isCin
               ? `<span class="mini-badge in">Check-in today</span>`
@@ -1644,21 +2338,16 @@
                 ? `<span class="mini-badge out">Check-out today</span>`
                 : `<span class="mini-badge stay">Staying</span>`;
             return `<div class="mini-booking-card ${cls}" onclick='showDetail(${JSON.stringify(b)})'>
-      <div class="mini-name">${b.name || ""}</div>
-      <div class="mini-meta">
-        <span><i class="fa fa-door-open" style="margin-right:3px"></i>${b.rooms || 1} ${cat} room${(b.rooms || 1) > 1 ? "s" : ""}</span>
-        <span><i class="fa fa-calendar" style="margin-right:3px"></i>${b.checkin} → ${b.checkout}</span>
-      </div>
-      ${badge}
-    </div>`;
+            <div class="mini-name">${b.name || ""}</div>
+            <div class="mini-meta">
+              <span><i class="fa fa-door-open" style="margin-right:3px"></i>${roomSummary(b)}</span>
+              <span><i class="fa fa-calendar" style="margin-right:3px"></i>${fmtDate(b.checkin)} → ${fmtDate(b.checkout)}</span>
+            </div>${badge}</div>`;
           })
           .join("");
       }
-
-      // expose for inline onclick
       window.showDetail = (b) => showBookingDetail(b);
 
-      // ── CALENDAR ──
       let calY = new Date().getFullYear(),
         calM = new Date().getMonth();
       const MONTHS = [
@@ -1681,100 +2370,75 @@
           `${MONTHS[calM]} ${calY}`;
         const grid = document.getElementById("calGrid");
         while (grid.children.length > 7) grid.removeChild(grid.lastChild);
-
         const firstDay = new Date(calY, calM, 1).getDay();
         const daysInMon = new Date(calY, calM + 1, 0).getDate();
         const daysInPrev = new Date(calY, calM, 0).getDate();
         const today = todayStr();
         const pad = (n) => String(n).padStart(2, "0");
         const ds = (d) => `${calY}-${pad(calM + 1)}-${pad(d)}`;
-
-        // prev filler
         for (let i = firstDay - 1; i >= 0; i--) {
-          const cell = document.createElement("div");
-          cell.className = "cal-day other";
-          cell.innerHTML = `<div class="cal-num">${daysInPrev - i}</div>`;
-          grid.appendChild(cell);
+          const c = document.createElement("div");
+          c.className = "cal-day other";
+          c.innerHTML = `<div class="cal-num">${daysInPrev - i}</div>`;
+          grid.appendChild(c);
         }
-
-        // current month
         for (let d = 1; d <= daysInMon; d++) {
-          const dateStr = ds(d);
-          const isToday = dateStr === today;
+          const dateStr = ds(d),
+            isToday = dateStr === today;
           const cell = document.createElement("div");
           cell.className = `cal-day${isToday ? " today" : ""}`;
-
           const numDiv = document.createElement("div");
           numDiv.className = "cal-num";
           numDiv.textContent = d;
           cell.appendChild(numDiv);
-
           const cins = allBookings.filter((b) => b.checkin === dateStr);
           const couts = allBookings.filter((b) => b.checkout === dateStr);
           const stays = allBookings.filter(
             (b) => b.checkin < dateStr && b.checkout > dateStr,
           );
-
           if (cins.length || couts.length || stays.length)
             cell.classList.add("has-ev");
-
           const allEvs = [
             ...cins.map((b) => ({ b, type: "cin" })),
             ...couts.map((b) => ({ b, type: "cout" })),
             ...stays.map((b) => ({ b, type: "stay" })),
           ];
-
           const MAX = 2;
           allEvs.slice(0, MAX).forEach(({ b, type }) => {
             const chip = document.createElement("div");
             chip.className = `cal-chip ${type}`;
-            const timeLabel =
+            const tl =
               type === "cin"
                 ? b.checkinTime || ""
                 : type === "cout"
                   ? b.checkoutTime || ""
                   : "";
-            const fmtTime = (t) => {
-              if (!t) return "";
-              const [h, m] = t.split(":").map(Number);
-              const ampm = h >= 12 ? "PM" : "AM";
-              const h12 = h % 12 || 12;
-              return `${h12}:${String(m).padStart(2, "0")} ${ampm}`;
-            };
-            chip.textContent = `${b.name || ""} · ${b.rooms || 1}rm${timeLabel ? " · " + fmtTime(timeLabel) : ""}`;
-            chip.title = `${b.name} | ${b.rooms || 1} room(s) | ${b.checkin}→${b.checkout}`;
+            chip.textContent = `${b.name || ""} · ${roomSummary(b)}${tl ? " · " + fmtTime(tl) : ""}`;
             chip.addEventListener("click", () => showBookingDetail(b));
             cell.appendChild(chip);
           });
-
           if (allEvs.length > MAX) {
             const more = document.createElement("div");
             more.className = "cal-more";
             more.textContent = `+${allEvs.length - MAX} more`;
-            more.addEventListener("click", () => {
-              // show all in a simple alert-like modal
-              const names = allEvs.map(({ b }) => b.name).join(", ");
+            more.addEventListener("click", () =>
               alert(
-                `All bookings on ${dateStr}:\n${allEvs.map(({ b, type }) => `• ${b.name} (${type === "cin" ? "Check-in" : type === "cout" ? "Check-out" : "Staying"}) — ${b.rooms || 1} room(s)`).join("\n")}`,
-              );
-            });
+                `All bookings on ${fmtDate(dateStr)}:\n${allEvs.map(({ b, type }) => `• ${b.name} (${type === "cin" ? "Check-in" : type === "cout" ? "Check-out" : "Staying"}) — ${roomSummary(b)}`).join("\n")}`,
+              ),
+            );
             cell.appendChild(more);
           }
-
           grid.appendChild(cell);
         }
-
-        // next filler
-        const total = firstDay + daysInMon;
-        const rem = total % 7 === 0 ? 0 : 7 - (total % 7);
+        const total = firstDay + daysInMon,
+          rem = total % 7 === 0 ? 0 : 7 - (total % 7);
         for (let d = 1; d <= rem; d++) {
-          const cell = document.createElement("div");
-          cell.className = "cal-day other";
-          cell.innerHTML = `<div class="cal-num">${d}</div>`;
-          grid.appendChild(cell);
+          const c = document.createElement("div");
+          c.className = "cal-day other";
+          c.innerHTML = `<div class="cal-num">${d}</div>`;
+          grid.appendChild(c);
         }
       }
-
       document.getElementById("calPrev").addEventListener("click", () => {
         calM--;
         if (calM < 0) {
@@ -1792,7 +2456,6 @@
         renderCalendar();
       });
 
-      // ── CANCEL BOOKING ──
       let foundIds = [];
       document
         .getElementById("findBookingBtn")
@@ -1803,54 +2466,34 @@
           const checkin = document.getElementById("cancelCheckin").value;
           const result = document.getElementById("cancelResult");
           foundIds = [];
-
           if (!phone || !checkin) {
             result.className = "cancel-result error";
             result.innerHTML =
               "<i class='fa fa-circle-xmark' style='margin-right:6px'></i>Please enter both phone and check-in date.";
             return;
           }
-
           result.className = "cancel-result info";
           result.innerHTML = "Searching...";
-
           const q = query(
             collection(db, "booking"),
             where("phone", "==", phone),
             where("checkin", "==", checkin),
           );
           const snap = await getDocs(q);
-
           if (snap.empty) {
             result.className = "cancel-result error";
             result.innerHTML =
               "<i class='fa fa-circle-xmark' style='margin-right:6px'></i>No booking found.";
             return;
           }
-
           let html = "";
           snap.forEach((d) => {
             foundIds.push(d.id);
             const b = d.data();
-            const cat = (b.roomCategory || "").toLowerCase().includes("large")
-              ? "Large"
-              : "Small";
-            const type = (b.roomType || "").toLowerCase().includes("non")
-              ? "Non-AC"
-              : "AC";
-            html += `<div class="found-detail">
-      <p><strong>Guest:</strong> ${b.name}</p>
-      <p><strong>Phone:</strong> ${b.phone}</p>
-      <p><strong>Room:</strong> ${cat} · ${type} · ${b.rooms} room(s)</p>
-      <p><strong>Check-in:</strong> ${b.checkin} &nbsp;|&nbsp; <strong>Check-out:</strong> ${b.checkout}</p>
-      ${b.bookingId ? `<p><strong>Booking ID:</strong> ${b.bookingId}</p>` : ""}
-    </div>`;
+            html += `<div class="found-detail"><p><strong>Guest:</strong> ${b.name}</p><p><strong>Phone:</strong> ${b.phone}</p><p><strong>Rooms:</strong> ${roomSummary(b)}</p><p><strong>Check-in:</strong> ${fmtDate(b.checkin)} &nbsp;|&nbsp; <strong>Check-out:</strong> ${fmtDate(b.checkout)}</p>${b.bookingId ? `<p><strong>Booking ID:</strong> ${b.bookingId}</p>` : ""}</div>`;
           });
-
           result.className = "cancel-result info";
-          result.innerHTML = `<i class='fa fa-circle-info' style='margin-right:6px'></i>Booking found — confirm to cancel.${html}
-    <button class="btn-confirm-cancel" id="confirmCancelBtn"><i class="fa fa-trash-can"></i> Confirm Cancel</button>`;
-
+          result.innerHTML = `<i class='fa fa-circle-info' style='margin-right:6px'></i>Booking found — confirm to cancel.${html}<button class="btn-confirm-cancel" id="confirmCancelBtn"><i class="fa fa-trash-can"></i> Confirm Cancel</button>`;
           document
             .getElementById("confirmCancelBtn")
             .addEventListener("click", async () => {
@@ -1865,7 +2508,6 @@
             });
         });
 
-      // ── SIDEBAR NAV ──
       const SECTIONS = {
         "#dashboard": "dashboardSection",
         "#calendar": "calendarSection",
@@ -1880,7 +2522,6 @@
         "#contacts": "Contacts",
         "#cancel": "Cancel Booking",
       };
-
       document.querySelectorAll(".sidebar a").forEach((a) => {
         a.addEventListener("click", () => {
           document
@@ -1899,54 +2540,75 @@
             document.getElementById("sidebar").classList.remove("show");
             document.getElementById("mainContent").classList.remove("shift");
           }
-          if (a.getAttribute("href") === "#calendar") renderCalendar();
+          if (a.getAttribute("href") === "#calendar")
+            setTimeout(() => renderCalendar(), 50);
         });
       });
-
       document.getElementById("sidebarToggle").addEventListener("click", () => {
         document.getElementById("sidebar").classList.toggle("show");
         document.getElementById("mainContent").classList.toggle("shift");
       });
 
-      // ── ADD BOOKING ──
+      // RESET MODAL
+      document
+        .getElementById("addBookingModal")
+        .addEventListener("hidden.bs.modal", () => {
+          for (const cat of ["large", "small"])
+            for (const type of ["ac", "nonac"]) {
+              roomCounts[cat][type] = 0;
+              const el = document.getElementById(`cnt-${cat}-${type}`);
+              el.textContent = "0";
+              el.className = "counter-val";
+            }
+          document.getElementById("roomTotalBar").style.display = "none";
+          // Reset clocks
+          clockState.checkin = { hour: 12, ampm: "PM" };
+          clockState.checkout = { hour: 11, ampm: "AM" };
+          document.getElementById("checkinAM").className = "ampm-btn";
+          document.getElementById("checkinPM").className = "ampm-btn active";
+          document.getElementById("checkoutAM").className = "ampm-btn active";
+          document.getElementById("checkoutPM").className = "ampm-btn";
+          document.getElementById("checkinDisplay").textContent = "12 PM";
+          document.getElementById("checkoutDisplay").textContent = "11 AM";
+          document.getElementById("adminCheckinTime").value = "12:00";
+          document.getElementById("adminCheckoutTime").value = "11:00";
+          document.getElementById("adminBookingForm").reset();
+          document.getElementById("adminBalance").value = "";
+        });
+
+      // ADD BOOKING
       document
         .getElementById("saveAdminBooking")
         .addEventListener("click", async () => {
           const name = document.getElementById("adminName").value.trim();
-          const _phoneInput = document.getElementById("adminPhone");
-          const _dial = window.adminIti
-            ? window.adminIti.getSelectedCountryData().dialCode
-            : "91";
-          const _national = _phoneInput.value.replace(/\D/g, "");
-          const phone = "+" + _dial + _national;
+          const phone = window.adminIti
+            ? window.adminIti.getNumber()
+            : "+91" +
+              document.getElementById("adminPhone").value.replace(/\D/g, "");
           const checkin = document.getElementById("adminCheckin").value;
           const checkinTime =
             document.getElementById("adminCheckinTime").value || "12:00";
           const checkout = document.getElementById("adminCheckout").value;
           const checkoutTime =
             document.getElementById("adminCheckoutTime").value || "11:00";
-          const roomCategory =
-            document.getElementById("adminRoomCategory").value;
-          const roomType = document.getElementById("adminRoomType").value;
-          const rooms = document.getElementById("adminRooms").value;
           const totalAmt =
             parseFloat(document.getElementById("adminTotal").value) || 0;
           const paidAmt =
             parseFloat(document.getElementById("adminPaid").value) || 0;
           const balanceAmt = totalAmt - paidAmt;
-
-          if (
-            !name ||
-            !phone ||
-            !checkin ||
-            !checkout ||
-            !roomCategory ||
-            !roomType ||
-            !rooms
-          ) {
-            alert("Please fill all fields.");
+          const totalRooms = Object.values(roomCounts)
+            .flatMap(Object.values)
+            .reduce((a, b) => a + b, 0);
+          if (!name || !phone || !checkin || !checkout || totalRooms === 0) {
+            alert("Please fill all fields and select at least one room.");
             return;
           }
+          const roomDetails = {};
+          for (const cat of ["large", "small"])
+            for (const type of ["ac", "nonac"]) {
+              if (roomCounts[cat][type] > 0)
+                roomDetails[`${cat}-${type}`] = roomCounts[cat][type];
+            }
           const { id: bookingId, number } = await generateBookingId();
           await addDoc(collection(db, "booking"), {
             bookingId,
@@ -1957,9 +2619,8 @@
             checkinTime,
             checkout,
             checkoutTime,
-            roomCategory: roomCategory.includes("Large") ? "large" : "small",
-            roomType: roomType.includes("AC") ? "ac" : "nonac",
-            rooms,
+            roomDetails,
+            rooms: totalRooms,
             totalAmount: totalAmt,
             paidAmount: paidAmt,
             balance: balanceAmt,
@@ -1969,72 +2630,14 @@
           bootstrap.Modal.getInstance(
             document.getElementById("addBookingModal"),
           ).hide();
-          document.getElementById("adminBookingForm").reset();
-          document.getElementById("adminBalance").value = "";
         });
 
-      // ── BALANCE AUTO CALC ──
-      const priceChart = {
-        large: { ac: 2300, nonac: 2000 },
-        small: { ac: 1800, nonac: 1500 },
-      };
-
-      function autoCalcTotal() {
-        const category = document.getElementById("adminRoomCategory").value;
-        const roomType = document.getElementById("adminRoomType").value;
-        const rooms =
-          parseInt(document.getElementById("adminRooms").value) || 0;
-        const checkin = document.getElementById("adminCheckin").value;
-        const checkout = document.getElementById("adminCheckout").value;
-
-        if (!category || !roomType || !rooms || !checkin || !checkout) return;
-
-        const catKey = category.toLowerCase().includes("large")
-          ? "large"
-          : "small";
-        const typeKey = roomType.toLowerCase().includes("non") ? "nonac" : "ac";
-        const pricePerRoom = priceChart[catKey][typeKey];
-
-        const nights = Math.max(
-          (new Date(checkout) - new Date(checkin)) / (1000 * 60 * 60 * 24),
-          1,
-        );
-
-        const total = pricePerRoom * rooms * nights;
-        document.getElementById("adminTotal").value = total;
-        calcBalance();
-      }
-
-      window.calcBalance = function () {
-        const total =
-          parseFloat(document.getElementById("adminTotal").value) || 0;
-        const paid =
-          parseFloat(document.getElementById("adminPaid").value) || 0;
-        document.getElementById("adminBalance").value = (total - paid).toFixed(
-          2,
-        );
-      };
-
-      [
-        "adminRoomCategory",
-        "adminRoomType",
-        "adminRooms",
-        "adminCheckin",
-        "adminCheckout",
-      ].forEach((id) =>
-        document.getElementById(id).addEventListener("change", autoCalcTotal),
-      );
-      document
-        .getElementById("adminTotal")
-        .addEventListener("input", calcBalance);
-      document
-        .getElementById("adminPaid")
-        .addEventListener("input", calcBalance);
+      renderCalendar();
     </script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"></script>
     <script>
-      // init intl-tel-input on admin phone field when modal opens
       let adminIti = null;
       document
         .getElementById("addBookingModal")
@@ -2053,8 +2656,6 @@
             window.adminIti = adminIti;
           }
         });
-
-      // Cancel phone intl-tel-input
       let cancelIti = null;
       window.addEventListener("DOMContentLoaded", () => {
         cancelIti = window.intlTelInput(
