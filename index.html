@@ -1962,6 +1962,28 @@
       </div>
     </div>
 
+    <!-- MORE BOOKINGS MODAL -->
+    <div class="modal fade" id="moreBookingsModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="moreBookingsTitle">Bookings</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body" id="moreBookingsBody"></div>
+          <div class="modal-footer">
+            <button class="btn-cancel-modal" data-bs-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- BOOKING DETAIL MODAL -->
     <div class="modal fade" id="bookingDetailModal" tabindex="-1">
       <div class="modal-dialog modal-dialog-centered">
@@ -2969,11 +2991,52 @@
             const more = document.createElement("div");
             more.className = "cal-more";
             more.textContent = `+${allEvs.length - MAX} more`;
-            more.addEventListener("click", () =>
-              alert(
-                `All bookings on ${fmtDate(dateStr)}:\n${allEvs.map(({ b, type }) => `• ${b.name} (${type === "cin" ? "Check-in" : type === "cout" ? "Check-out" : "Staying"}) — ${roomSummary(b)}`).join("\n")}`,
-              ),
-            );
+            more.addEventListener("click", (e) => {
+              e.stopPropagation();
+              document.getElementById("moreBookingsTitle").textContent =
+                `All Bookings — ${fmtDate(dateStr)}`;
+              const body = document.getElementById("moreBookingsBody");
+              body.innerHTML = "";
+              allEvs.forEach(({ b, type }) => {
+                const typeLabel =
+                  type === "cin"
+                    ? "Check-in"
+                    : type === "cout"
+                      ? "Check-out"
+                      : "Staying";
+                const typeColor =
+                  type === "cin"
+                    ? "#15803d"
+                    : type === "cout"
+                      ? "#b91c1c"
+                      : "#1d4ed8";
+                const typeBg =
+                  type === "cin"
+                    ? "#dcfce7"
+                    : type === "cout"
+                      ? "#fee2e2"
+                      : "#eff6ff";
+                const div = document.createElement("div");
+                div.style.cssText =
+                  "display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #f5f0ea;cursor:pointer";
+                div.innerHTML = `
+                  <div>
+                    <div style="font-weight:600;font-size:14px;color:var(--deep)">${b.name || ""}</div>
+                    <div style="font-size:11px;color:var(--muted);margin-top:2px">${roomSummary(b)}</div>
+                  </div>
+                  <span style="background:${typeBg};color:${typeColor};padding:3px 10px;border-radius:2px;font-size:11px;font-weight:600">${typeLabel}</span>`;
+                div.addEventListener("click", () => {
+                  bootstrap.Modal.getInstance(
+                    document.getElementById("moreBookingsModal"),
+                  ).hide();
+                  setTimeout(() => showBookingDetail(b), 300);
+                });
+                body.appendChild(div);
+              });
+              new bootstrap.Modal(
+                document.getElementById("moreBookingsModal"),
+              ).show();
+            });
             cell.appendChild(more);
           }
           grid.appendChild(cell);
