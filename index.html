@@ -1233,12 +1233,12 @@
           overflow-x: auto;
         }
         .cal-grid {
-          min-width: 750px;
+          min-width: 900px;
           gap: 0;
         }
         .cal-dow,
         .cal-day {
-          min-width: 107px;
+          min-width: 120px;
         }
 
         .cal-num {
@@ -2693,6 +2693,7 @@
           <div class="detail-row"><span class="lbl">Payment ID</span><span class="val" style="font-size:11px">${b.paymentId || "—"}</span></div>
           <div class="detail-row"><span class="lbl">Booked On</span><span class="val">${b.createdAt ? new Date(b.createdAt).toLocaleString("en-IN") : ""}</span></div>
           ${payHistory}`;
+        document.getElementById("sidebarToggle").style.display = "none";
         new bootstrap.Modal(
           document.getElementById("bookingDetailModal"),
         ).show();
@@ -3026,6 +3027,7 @@
                   </div>
                   <span style="background:${typeBg};color:${typeColor};padding:3px 10px;border-radius:2px;font-size:11px;font-weight:600">${typeLabel}</span>`;
                 div.addEventListener("click", () => {
+                  openingDetailFromMore = true;
                   bootstrap.Modal.getInstance(
                     document.getElementById("moreBookingsModal"),
                   ).hide();
@@ -3245,6 +3247,27 @@
           resetDatePh("adminCheckin", "checkinWrap");
           resetDatePh("adminCheckout", "checkoutWrap");
           closeClock();
+        });
+      let openingDetailFromMore = false;
+
+      document
+        .getElementById("bookingDetailModal")
+        .addEventListener("hidden.bs.modal", () => {
+          if (window.innerWidth <= 768)
+            document.getElementById("sidebarToggle").style.display = "";
+        });
+      document
+        .getElementById("moreBookingsModal")
+        .addEventListener("hidden.bs.modal", () => {
+          if (window.innerWidth <= 768 && !openingDetailFromMore)
+            document.getElementById("sidebarToggle").style.display = "";
+          openingDetailFromMore = false;
+        });
+      document
+        .getElementById("payBalanceModal")
+        .addEventListener("hidden.bs.modal", () => {
+          if (window.innerWidth <= 768)
+            document.getElementById("sidebarToggle").style.display = "";
         });
 
       // ADD BOOKING
