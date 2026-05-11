@@ -1452,7 +1452,7 @@
         <!-- CALENDAR -->
         <div id="calendarSection" class="section">
           <div class="section-header">
-            <div class="section-title">Booking Calendar</div>
+            <div class="section-title">Booking dar</div>
           </div>
           <div class="cal-wrap">
             <div class="cal-nav">
@@ -2498,18 +2498,43 @@
 
       function renderBookings(list) {
         const tb = document.getElementById("bookingTable");
+
         tb.innerHTML = "";
-        list.forEach((b) => {
-          const bal = Number(b.balance || 0);
-          const balCell =
-            bal > 0
-              ? `<span style="color:#dc2626;font-weight:700">${fmtMoney(bal)}</span>`
-              : `<span style="color:#16a34a">Paid</span>`;
-          const tr = document.createElement("tr");
-          tr.innerHTML = `<td><strong>${b.name || ""}</strong></td><td>${b.phone || ""}</td><td style="font-size:12px">${roomSummary(b)}</td><td>${fmtDate(b.checkin)}</td><td>${fmtDate(b.checkout)}</td><td>${fmtMoney(b.totalAmount)}</td><td>${balCell}</td><td>${b.createdAt ? new Date(b.createdAt).toLocaleDateString("en-IN") : ""}</td>`;
-          tr.addEventListener("click", () => showBookingDetail(b));
-          tb.appendChild(tr);
-        });
+
+        // REMOVE CANCELLED BOOKINGS
+        list
+          .filter((b) => !b.cancelled)
+          .forEach((b) => {
+            const bal = Number(b.balance || 0);
+
+            const balCell =
+              bal > 0
+                ? `<span style="color:#dc2626;font-weight:700">
+              ${fmtMoney(bal)}
+            </span>`
+                : `<span style="color:#16a34a">Paid</span>`;
+
+            const tr = document.createElement("tr");
+
+            tr.innerHTML = `
+        <td><strong>${b.name || ""}</strong></td>
+        <td>${b.phone || ""}</td>
+        <td style="font-size:12px">${roomSummary(b)}</td>
+        <td>${fmtDate(b.checkin)}</td>
+        <td>${fmtDate(b.checkout)}</td>
+        <td>${fmtMoney(b.totalAmount)}</td>
+        <td>${balCell}</td>
+        <td>
+          ${
+            b.createdAt ? new Date(b.createdAt).toLocaleDateString("en-IN") : ""
+          }
+        </td>
+      `;
+
+            tr.addEventListener("click", () => showBookingDetail(b));
+
+            tb.appendChild(tr);
+          });
       }
 
       // ── PAY BALANCE ──
@@ -2617,13 +2642,16 @@
         }
 
         // Initial payment method
-        const initMethod =
-          b.paymentMethod || (b.payments && b.payments[0]?.method) || "cash";
+        const hasRazorpay = b.paymentId && b.paymentId.startsWith("pay_");
+        const initMethod = hasRazorpay
+          ? "online"
+          : b.paymentMethod || (b.payments && b.payments[0]?.method) || "cash";
         const methodBadge =
-          initMethod === "gpay"
-            ? `<span class="pay-badge gpay">📱 GPay</span>`
-            : `<span class="pay-badge cash">💵 Cash</span>`;
-
+          initMethod === "online"
+            ? `<span class="pay-badge gpay">📱 Online (Razorpay)</span>`
+            : initMethod === "gpay"
+              ? `<span class="pay-badge gpay">📱 GPay</span>`
+              : `<span class="pay-badge cash">💵 Cash</span>`;
         document.getElementById("bookingDetailBody").innerHTML = `
           <div style="margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;">
             <div>
@@ -2693,47 +2721,39 @@
 
       function renderFinance() {
         finRows = [];
+
         allBookings.forEach((b) => {
-          // Initial payment (booking created)
-          const createdDate = b.createdAt
-            ? new Date(b.createdAt).toISOString().split("T")[0]
-            : "";
-          const initMethod = b.paymentMethod || "cash";
-          if (b.paidAmount > 0 || b.price > 0) {
-            finRows.push({
-              date: createdDate,
-              bookingId: b.bookingId || "—",
-              guest: b.name || "",
-              type: "inflow",
-              method: initMethod,
-              amount: Number(b.paidAmount || b.price || 0),
-              note: "Initial Payment",
-              cancelled: b.cancelled || false,
-            });
-          }
-          // Balance payments
+          // ALL PAYMENTS
           if (b.payments && b.payments.length > 0) {
-            b.payments.forEach((p) => {
+            b.payments.forEach((p, index) => {
               finRows.push({
-                date: p.date || createdDate,
+                date: p.date || "",
                 bookingId: b.bookingId || "—",
                 guest: b.name || "",
                 type: "inflow",
                 method: p.method || "cash",
                 amount: Number(p.amount || 0),
-                note: "Balance Payment",
+
+                // first payment = initial
+                note: index === 0 ? "Initial Payment" : "Balance Payment",
+
                 cancelled: false,
               });
             });
           }
-          // Cancellation refund
+
+          // REFUND
           if (b.cancelled && b.paidAmount > 0) {
+            const createdDate = b.createdAt
+              ? new Date(b.createdAt).toISOString().split("T")[0]
+              : "";
+
             finRows.push({
               date: b.cancelledAt || createdDate,
               bookingId: b.bookingId || "—",
               guest: b.name || "",
               type: "outflow",
-              method: "—",
+              method: b.refundMethod || "cash",
               amount: Number(b.paidAmount || 0),
               note: "Cancellation Refund",
               cancelled: true,
@@ -2743,54 +2763,90 @@
 
         // Apply date filter
         let filtered = finRows;
+
         if (finFromVal) filtered = filtered.filter((r) => r.date >= finFromVal);
+
         if (finToVal) filtered = filtered.filter((r) => r.date <= finToVal);
+
         filtered.sort((a, b) => b.date.localeCompare(a.date));
 
         let inflow = 0,
           outflow = 0,
           pending = 0;
+
         filtered.forEach((r) => {
           if (r.type === "inflow") inflow += r.amount;
           if (r.type === "outflow") outflow += r.amount;
         });
-        // Pending balance — filter by booking checkin date
+
+        // Pending balance
         allBookings.forEach((b) => {
           if (b.cancelled) return;
+
           if (Number(b.balance || 0) <= 0) return;
+
           const bd = b.checkin || "";
+
           if (finFromVal && bd < finFromVal) return;
+
           if (finToVal && bd > finToVal) return;
+
           pending += Number(b.balance);
         });
 
         document.getElementById("finInflow").textContent = fmtMoney(inflow);
+
         document.getElementById("finOutflow").textContent = fmtMoney(outflow);
+
         document.getElementById("finPending").textContent = fmtMoney(pending);
 
         const tb = document.getElementById("financeTable");
+
         tb.innerHTML = "";
+
         if (!filtered.length) {
-          tb.innerHTML = `<tr><td colspan="7" style="text-align:center;color:var(--muted);padding:24px">No transactions found</td></tr>`;
+          tb.innerHTML = `
+      <tr>
+        <td colspan="7"
+          style="text-align:center;color:var(--muted);padding:24px">
+          No transactions found
+        </td>
+      </tr>
+    `;
           return;
         }
+
         filtered.forEach((r) => {
           const typeBadge =
             r.type === "inflow"
               ? `<span class="fin-badge in">Inflow</span>`
               : `<span class="fin-badge out">Outflow</span>`;
+
           const methodBadge =
             r.method === "gpay"
               ? `<span class="pay-badge gpay">📱 GPay</span>`
               : r.method === "cash"
                 ? `<span class="pay-badge cash">💵 Cash</span>`
                 : `<span style="color:var(--muted)">—</span>`;
+
           const rowClass =
             r.type === "inflow" ? "ledger-row-in" : "ledger-row-out";
-          tb.innerHTML += `<tr class="${rowClass}"><td>${fmtDate(r.date)}</td><td style="font-size:11px">${r.bookingId}</td><td>${r.guest}</td><td>${typeBadge}</td><td>${methodBadge}</td><td style="font-weight:700">${fmtMoney(r.amount)}</td><td style="font-size:11px;color:var(--muted)">${r.note}</td></tr>`;
+
+          tb.innerHTML += `
+      <tr class="${rowClass}">
+        <td>${fmtDate(r.date)}</td>
+        <td style="font-size:11px">${r.bookingId}</td>
+        <td>${r.guest}</td>
+        <td>${typeBadge}</td>
+        <td>${methodBadge}</td>
+        <td style="font-weight:700">${fmtMoney(r.amount)}</td>
+        <td style="font-size:11px;color:var(--muted)">
+          ${r.note}
+        </td>
+      </tr>
+    `;
         });
 
-        // Store for export
         window._finExportRows = filtered;
       }
 
@@ -2877,10 +2933,16 @@
           numDiv.className = "cal-num";
           numDiv.textContent = d;
           cell.appendChild(numDiv);
-          const cins = allBookings.filter((b) => b.checkin === dateStr);
-          const couts = allBookings.filter((b) => b.checkout === dateStr);
+          const cins = allBookings.filter(
+            (b) => !b.cancelled && b.checkin === dateStr,
+          );
+
+          const couts = allBookings.filter(
+            (b) => !b.cancelled && b.checkout === dateStr,
+          );
+
           const stays = allBookings.filter(
-            (b) => b.checkin < dateStr && b.checkout > dateStr,
+            (b) => !b.cancelled && b.checkin < dateStr && b.checkout > dateStr,
           );
           if (cins.length || couts.length || stays.length)
             cell.classList.add("has-ev");
@@ -2980,10 +3042,41 @@
             html += `<div class="found-detail"><p><strong>Guest:</strong> ${b.name}</p><p><strong>Phone:</strong> ${b.phone}</p><p><strong>Rooms:</strong> ${roomSummary(b)}</p><p><strong>Check-in:</strong> ${fmtDate(b.checkin)} &nbsp;|&nbsp; <strong>Check-out:</strong> ${fmtDate(b.checkout)}</p>${b.bookingId ? `<p><strong>Booking ID:</strong> ${b.bookingId}</p>` : ""}</div>`;
           });
           result.className = "cancel-result info";
-          result.innerHTML = `<i class='fa fa-circle-info' style='margin-right:6px'></i>Booking found — confirm to cancel.${html}<button class="btn-confirm-cancel" id="confirmCancelBtn"><i class="fa fa-trash-can"></i> Confirm Cancel</button>`;
+          result.innerHTML = `
+  <i class='fa fa-circle-info'
+     style='margin-right:6px'></i>
+
+  Booking found — confirm to cancel.
+
+  ${html}
+
+  <div style="margin-top:12px">
+    <label
+      style="font-size:12px;font-weight:600">
+      Refund Method
+    </label>
+
+    <select id="refundMethod" class="inp">
+      <option value="cash">💵 Cash</option>
+      <option value="gpay">📱 GPay</option>
+      <option value="bank">🏦 Bank Transfer</option>
+    </select>
+  </div>
+
+  <button
+    class="btn-confirm-cancel"
+    id="confirmCancelBtn">
+
+    <i class="fa fa-trash-can"></i>
+    Confirm Cancel
+
+  </button>
+`;
           document
             .getElementById("confirmCancelBtn")
             .addEventListener("click", async () => {
+              const refundMethod =
+                document.getElementById("refundMethod").value;
               for (const id of foundIds) {
                 const docRef = doc(db, "booking", id);
                 const snap = await getDoc(docRef);
@@ -2991,6 +3084,7 @@
                   await updateDoc(docRef, {
                     cancelled: true,
                     cancelledAt: todayStr(),
+                    refundMethod: refundMethod,
                   });
                 }
               }
