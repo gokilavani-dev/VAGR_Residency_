@@ -299,6 +299,12 @@
       .stat-card.blue::after {
         background: #3b82f6;
       }
+      .stat-card.purple {
+        border-top-color: #8b5cf6;
+      }
+      .stat-card.purple::after {
+        background: #8b5cf6;
+      }
       .stat-label {
         font-size: 11px;
         letter-spacing: 1.5px;
@@ -313,6 +319,9 @@
         font-weight: 700;
         line-height: 1;
         color: var(--deep);
+      }
+      .stat-value.small {
+        font-size: 28px;
       }
       .stat-icon {
         position: absolute;
@@ -440,6 +449,7 @@
         font-weight: 500;
         display: flex;
         align-items: center;
+        justify-content: space-between;
         gap: 8px;
       }
       .table-card-header i {
@@ -528,12 +538,13 @@
       }
       .cal-grid {
         display: grid;
-        grid-template-columns: repeat(7, 1fr);
+        grid-template-columns: repeat(7, minmax(120px, 1fr));
         gap: 1px;
         background: #ede7dc;
         border: 1px solid #ede7dc;
         border-radius: 4px;
         overflow: hidden;
+        min-width: 840px;
       }
       .cal-dow {
         background: #f8f5f0;
@@ -591,9 +602,9 @@
         padding: 2px 5px;
         border-radius: 2px;
         margin-bottom: 2px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        white-space: normal;
+        word-break: break-word;
+        line-height: 1.4;
         cursor: pointer;
         font-weight: 500;
       }
@@ -744,6 +755,27 @@
         background: var(--gold);
         color: var(--deep);
       }
+      .btn-export {
+        background: transparent;
+        color: var(--gold);
+        border: 1px solid var(--gold);
+        padding: 6px 14px;
+        border-radius: 2px;
+        font-size: 11px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-weight: 600;
+        font-family: "DM Sans", sans-serif;
+        cursor: pointer;
+        transition: 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .btn-export:hover {
+        background: var(--gold);
+        color: var(--deep);
+      }
       .modal-content {
         border: none;
         border-radius: 4px;
@@ -797,7 +829,7 @@
         box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.12);
         background: #fff;
       }
-      /* DATE PLACEHOLDER FIX */
+      /* DATE PLACEHOLDER */
       .date-placeholder-wrap {
         position: relative;
       }
@@ -1097,6 +1129,80 @@
         border-radius: 2px;
         margin-top: 4px;
       }
+      /* PAYMENT METHOD BADGE */
+      .pay-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 3px 10px;
+        border-radius: 2px;
+        font-size: 11px;
+        font-weight: 600;
+      }
+      .pay-badge.cash {
+        background: #fef9c3;
+        color: #854d0e;
+      }
+      .pay-badge.gpay {
+        background: #dbeafe;
+        color: #1e40af;
+      }
+      /* FINANCE */
+      .fin-stat-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-bottom: 24px;
+      }
+      .ledger-row-in td {
+        background: #f0fdf4 !important;
+      }
+      .ledger-row-out td {
+        background: #fef2f2 !important;
+      }
+      .ledger-row-bal td {
+        background: #fffbf0 !important;
+      }
+      .fin-badge {
+        display: inline-block;
+        padding: 3px 10px;
+        border-radius: 2px;
+        font-size: 11px;
+        font-weight: 600;
+      }
+      .fin-badge.in {
+        background: #dcfce7;
+        color: #15803d;
+      }
+      .fin-badge.out {
+        background: #fee2e2;
+        color: #b91c1c;
+      }
+      .fin-badge.bal {
+        background: #fef9c3;
+        color: #854d0e;
+      }
+      /* BALANCE DUE BUTTON */
+      .btn-pay-balance {
+        background: #f59e0b;
+        color: #fff;
+        border: none;
+        padding: 6px 14px;
+        border-radius: 2px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-family: "DM Sans", sans-serif;
+        cursor: pointer;
+        transition: 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .btn-pay-balance:hover {
+        background: #d97706;
+      }
       @media (max-width: 768px) {
         .sidebar {
           left: -240px;
@@ -1122,19 +1228,19 @@
         .topbar {
           padding: 14px 16px 14px 60px;
         }
-        /* Calendar scrollable */
         .cal-wrap {
           padding: 12px 8px;
           overflow-x: auto;
         }
         .cal-grid {
-          min-width: 620px;
-          gap: 1px;
+          min-width: 750px;
+          gap: 0;
         }
+        .cal-dow,
         .cal-day {
-          min-height: 70px;
-          padding: 4px 3px;
+          min-width: 107px;
         }
+
         .cal-num {
           font-size: 11px;
           width: 20px;
@@ -1152,15 +1258,18 @@
           display: block;
           font-size: 8px;
           padding: 1px 3px;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
+          white-space: normal;
+          word-break: break-word;
+          line-height: 1.3;
         }
         .cal-day.has-ev::after {
           display: none;
         }
         .cal-more {
           font-size: 8px;
+        }
+        .fin-stat-grid {
+          grid-template-columns: 1fr 1fr;
         }
       }
       @media (max-width: 480px) {
@@ -1170,6 +1279,9 @@
         }
         .stat-value {
           font-size: 34px;
+        }
+        .fin-stat-grid {
+          grid-template-columns: 1fr 1fr;
         }
       }
       @media (max-width: 576px) {
@@ -1246,6 +1358,7 @@
         >
         <a href="#bookings"><i class="fa-solid fa-bed"></i> Bookings</a>
         <a href="#contacts"><i class="fa-solid fa-envelope"></i> Contacts</a>
+        <a href="#finance"><i class="fa-solid fa-chart-line"></i> Finance</a>
         <a href="#cancel"><i class="fa-solid fa-ban"></i> Cancel Booking</a>
       </div>
       <div class="sidebar-footer">© 2026 VAGR Residency</div>
@@ -1384,8 +1497,10 @@
           </div>
           <div class="table-card">
             <div class="table-card-header">
-              <i class="fa fa-bed"></i> Filtered Bookings — click a row for
-              details
+              <span
+                ><i class="fa fa-bed"></i> Filtered Bookings — click a row for
+                details</span
+              >
             </div>
             <div class="table-responsive">
               <table class="table">
@@ -1397,6 +1512,7 @@
                     <th>Check-in</th>
                     <th>Check-out</th>
                     <th>Total</th>
+                    <th>Balance</th>
                     <th>Created At</th>
                   </tr>
                 </thead>
@@ -1413,7 +1529,7 @@
           </div>
           <div class="table-card">
             <div class="table-card-header">
-              <i class="fa fa-envelope"></i> Contact Requests
+              <span><i class="fa fa-envelope"></i> Contact Requests</span>
             </div>
             <div class="table-responsive">
               <table class="table">
@@ -1427,6 +1543,76 @@
                   </tr>
                 </thead>
                 <tbody id="contactsTable"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- FINANCE -->
+        <div id="financeSection" class="section">
+          <div class="section-header">
+            <div class="section-title">Finance Ledger</div>
+            <button class="btn-export" id="exportCsvBtn">
+              <i class="fa fa-download"></i> Export CSV
+            </button>
+          </div>
+          <!-- Finance date filter -->
+          <div class="date-filter-bar" style="margin-bottom: 20px">
+            <div class="filter-group">
+              <label>From</label><input type="date" id="finFrom" />
+            </div>
+            <div class="filter-group">
+              <label>To</label><input type="date" id="finTo" />
+            </div>
+            <div
+              class="filter-group"
+              style="justify-content: flex-end; margin-top: 18px"
+            >
+              <button
+                class="btn-add"
+                onclick="applyFinFilter()"
+                style="padding: 9px 16px"
+              >
+                <i class="fa fa-filter"></i> Filter
+              </button>
+            </div>
+          </div>
+          <!-- Summary cards -->
+          <div class="fin-stat-grid" id="finStatGrid">
+            <div class="stat-card green">
+              <div class="stat-label">Total Inflow</div>
+              <div class="stat-value small" id="finInflow">₹0</div>
+              <i class="fa fa-arrow-down stat-icon" style="color: #22c55e"></i>
+            </div>
+            <div class="stat-card red">
+              <div class="stat-label">Total Outflow (Refunds)</div>
+              <div class="stat-value small" id="finOutflow">₹0</div>
+              <i class="fa fa-arrow-up stat-icon" style="color: #ef4444"></i>
+            </div>
+            <div class="stat-card purple">
+              <div class="stat-label">Pending Balance Due</div>
+              <div class="stat-value small" id="finPending">₹0</div>
+              <i class="fa fa-clock stat-icon" style="color: #8b5cf6"></i>
+            </div>
+          </div>
+          <div class="table-card">
+            <div class="table-card-header">
+              <span><i class="fa fa-receipt"></i> Transactions</span>
+            </div>
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Booking ID</th>
+                    <th>Guest</th>
+                    <th>Type</th>
+                    <th>Method</th>
+                    <th>Amount (₹)</th>
+                    <th>Note</th>
+                  </tr>
+                </thead>
+                <tbody id="financeTable"></tbody>
               </table>
             </div>
           </div>
@@ -1571,7 +1757,6 @@
                   </div>
                 </div>
               </div>
-
               <!-- ROOM GRID -->
               <div class="mb-3">
                 <label class="form-label">Rooms — Select Count per Type</label>
@@ -1697,9 +1882,8 @@
                   <div class="grand" id="roomGrand"></div>
                 </div>
               </div>
-
               <!-- Amount -->
-              <div class="row g-3 mb-1">
+              <div class="row g-3 mb-3">
                 <div class="col-4">
                   <label class="form-label">Total (₹)</label
                   ><input
@@ -1732,6 +1916,16 @@
                   />
                 </div>
               </div>
+              <!-- Payment Method -->
+              <div class="row g-3 mb-1">
+                <div class="col-6">
+                  <label class="form-label">Payment Method</label>
+                  <select id="adminPayMethod" class="form-control">
+                    <option value="cash">💵 Cash</option>
+                    <option value="gpay">📱 GPay</option>
+                  </select>
+                </div>
+              </div>
             </form>
           </div>
           <div class="modal-footer">
@@ -1744,7 +1938,7 @@
       </div>
     </div>
 
-    <!-- CLOCK POPUP (single shared) -->
+    <!-- CLOCK POPUP -->
     <div class="clock-popup" id="clockPopup">
       <div class="clock-popup-label">Select Hour</div>
       <div class="clock-face-wrap" id="clockFaceWrap"></div>
@@ -1790,6 +1984,65 @@
       </div>
     </div>
 
+    <!-- PAY BALANCE MODAL -->
+    <div class="modal fade" id="payBalanceModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header" style="border-top-color: #f59e0b">
+            <h5 class="modal-title">Collect Balance Payment</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div
+              id="payBalanceInfo"
+              style="
+                background: #f8f5f0;
+                border-radius: 4px;
+                padding: 14px;
+                margin-bottom: 16px;
+                font-size: 13px;
+              "
+            ></div>
+            <div class="row g-3">
+              <div class="col-6">
+                <label class="form-label">Amount Collecting (₹)</label>
+                <input
+                  type="number"
+                  id="payAmount"
+                  class="form-control"
+                  placeholder="0"
+                  min="1"
+                />
+              </div>
+              <div class="col-6">
+                <label class="form-label">Payment Method</label>
+                <select id="payMethod" class="form-control">
+                  <option value="cash">💵 Cash</option>
+                  <option value="gpay">📱 GPay</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn-cancel-modal" data-bs-dismiss="modal">
+              Cancel
+            </button>
+            <button
+              class="btn-save"
+              id="confirmPayBalance"
+              style="background: #f59e0b"
+            >
+              Confirm Payment
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script type="module">
       import { firebaseConfig } from "./config.js";
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
@@ -1799,10 +2052,13 @@
         onSnapshot,
         addDoc,
         getDocs,
+        getDoc,
         query,
         where,
         deleteDoc,
         doc,
+        updateDoc,
+        arrayUnion,
       } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
       const app = initializeApp(firebaseConfig);
@@ -1817,6 +2073,7 @@
         const [h] = t.split(":").map(Number);
         return `${h % 12 || 12} ${h >= 12 ? "PM" : "AM"}`;
       };
+      const fmtMoney = (n) => "₹" + Number(n || 0).toLocaleString("en-IN");
 
       const PRICE = {
         large: { ac: 2300, nonac: 2000 },
@@ -1829,8 +2086,8 @@
 
       // ── DATE PLACEHOLDER ──
       function initDatePh(inputId, wrapperId) {
-        const inp = document.getElementById(inputId);
-        const wrap = document.getElementById(wrapperId);
+        const inp = document.getElementById(inputId),
+          wrap = document.getElementById(wrapperId);
         if (!inp || !wrap) return;
         const update = () => {
           if (inp.value) {
@@ -1846,8 +2103,8 @@
         update();
       }
       function resetDatePh(inputId, wrapperId) {
-        const inp = document.getElementById(inputId);
-        const wrap = document.getElementById(wrapperId);
+        const inp = document.getElementById(inputId),
+          wrap = document.getElementById(wrapperId);
         if (inp) inp.classList.remove("has-val");
         if (wrap) wrap.classList.remove("has-val");
       }
@@ -1870,7 +2127,6 @@
         const cx = SIZE / 2,
           cy = SIZE / 2,
           R = isMobile ? 52 : 62;
-
         const svg = document.createElementNS(
           "http://www.w3.org/2000/svg",
           "svg",
@@ -1878,7 +2134,6 @@
         svg.setAttribute("width", SIZE);
         svg.setAttribute("height", SIZE);
         svg.style.cssText = "position:absolute;top:0;left:0";
-
         const bg = document.createElementNS(
           "http://www.w3.org/2000/svg",
           "circle",
@@ -1890,7 +2145,6 @@
         bg.setAttribute("stroke", "#ede7dc");
         bg.setAttribute("stroke-width", "1");
         svg.appendChild(bg);
-
         const selH =
           state.ampm === "AM"
             ? state.hour === 12
@@ -1914,7 +2168,6 @@
         hand.setAttribute("stroke-width", "2.5");
         hand.setAttribute("stroke-linecap", "round");
         svg.appendChild(hand);
-
         const dot = document.createElementNS(
           "http://www.w3.org/2000/svg",
           "circle",
@@ -1925,7 +2178,6 @@
         dot.setAttribute("fill", "var(--gold)");
         svg.appendChild(dot);
         face.appendChild(svg);
-
         for (let h = 1; h <= 12; h++) {
           const a = (h / 12) * 2 * Math.PI - Math.PI / 2;
           const x = cx + R * Math.cos(a),
@@ -1961,7 +2213,6 @@
         if (closePopup) closeClock();
         updateRoomTotal();
       }
-
       window.setAmPm = function (ampm) {
         if (!activeClockId) return;
         clockState[activeClockId].ampm = ampm;
@@ -1972,8 +2223,8 @@
         const popup = document.getElementById("clockPopup");
         const rect = trigger.getBoundingClientRect();
         const popupH = 280;
-        const spaceBelow = window.innerHeight - rect.bottom;
-        const spaceAbove = rect.top;
+        const spaceBelow = window.innerHeight - rect.bottom,
+          spaceAbove = rect.top;
         let top =
           spaceBelow >= popupH || spaceBelow >= spaceAbove
             ? rect.bottom + 4
@@ -1987,20 +2238,17 @@
         popup.style.top = top + "px";
         popup.style.left = left + "px";
       }
-
       function closeClock() {
         document.getElementById("clockPopup").classList.remove("open");
-        if (activeClockId) {
+        if (activeClockId)
           document
             .getElementById(activeClockId + "Trigger")
             .classList.remove("active");
-        }
         activeClockId = null;
       }
-
       window.toggleClock = function (id) {
-        const popup = document.getElementById("clockPopup");
-        const trigger = document.getElementById(id + "Trigger");
+        const popup = document.getElementById("clockPopup"),
+          trigger = document.getElementById(id + "Trigger");
         if (activeClockId === id && popup.classList.contains("open")) {
           closeClock();
           return;
@@ -2014,7 +2262,6 @@
         positionPopup(trigger);
         buildClock(id);
       };
-
       document.addEventListener("click", (e) => {
         const popup = document.getElementById("clockPopup");
         if (
@@ -2022,9 +2269,8 @@
           !popup.contains(e.target) &&
           !document.getElementById("checkinTrigger").contains(e.target) &&
           !document.getElementById("checkoutTrigger").contains(e.target)
-        ) {
+        )
           closeClock();
-        }
       });
 
       // ── ROOM COUNTS ──
@@ -2080,7 +2326,6 @@
           document.getElementById("adminBalance").value = "";
         }
       }
-
       window.calcBalance = function () {
         const total =
           parseFloat(document.getElementById("adminTotal").value) || 0;
@@ -2120,8 +2365,8 @@
         };
       }
 
-      const filterFrom = document.getElementById("filterFrom");
-      const filterTo = document.getElementById("filterTo");
+      const filterFrom = document.getElementById("filterFrom"),
+        filterTo = document.getElementById("filterTo");
       filterFrom.value = todayStr();
       filterTo.value = todayStr();
 
@@ -2135,6 +2380,7 @@
         applyFilters();
         renderUpcoming();
         renderCalendar();
+        renderFinance();
       });
 
       let allContacts = [];
@@ -2221,7 +2467,6 @@
         );
         renderBookings(filtered);
       }
-
       ["filterFrom", "filterTo", "filterRoomType"].forEach((id) =>
         document.getElementById(id).addEventListener("change", () => {
           applyFilters();
@@ -2255,12 +2500,70 @@
         const tb = document.getElementById("bookingTable");
         tb.innerHTML = "";
         list.forEach((b) => {
+          const bal = Number(b.balance || 0);
+          const balCell =
+            bal > 0
+              ? `<span style="color:#dc2626;font-weight:700">${fmtMoney(bal)}</span>`
+              : `<span style="color:#16a34a">Paid</span>`;
           const tr = document.createElement("tr");
-          tr.innerHTML = `<td><strong>${b.name || ""}</strong></td><td>${b.phone || ""}</td><td style="font-size:12px">${roomSummary(b)}</td><td>${fmtDate(b.checkin)}</td><td>${fmtDate(b.checkout)}</td><td>₹${b.totalAmount != null ? Number(b.totalAmount).toLocaleString("en-IN") : "—"}</td><td>${b.createdAt ? new Date(b.createdAt).toLocaleDateString("en-IN") : ""}</td>`;
+          tr.innerHTML = `<td><strong>${b.name || ""}</strong></td><td>${b.phone || ""}</td><td style="font-size:12px">${roomSummary(b)}</td><td>${fmtDate(b.checkin)}</td><td>${fmtDate(b.checkout)}</td><td>${fmtMoney(b.totalAmount)}</td><td>${balCell}</td><td>${b.createdAt ? new Date(b.createdAt).toLocaleDateString("en-IN") : ""}</td>`;
           tr.addEventListener("click", () => showBookingDetail(b));
           tb.appendChild(tr);
         });
       }
+
+      // ── PAY BALANCE ──
+      let payBalanceDocId = null;
+      window.openPayBalance = function (docId, bookingId, name, balance) {
+        payBalanceDocId = docId;
+        document.getElementById("payBalanceInfo").innerHTML =
+          `<strong>${name}</strong> — Booking ${bookingId}<br>Outstanding Balance: <span style="color:#dc2626;font-weight:700">${fmtMoney(balance)}</span>`;
+        document.getElementById("payAmount").value = balance;
+        bootstrap.Modal.getInstance(
+          document.getElementById("bookingDetailModal"),
+        ).hide();
+        setTimeout(
+          () =>
+            new bootstrap.Modal(
+              document.getElementById("payBalanceModal"),
+            ).show(),
+          300,
+        );
+      };
+
+      document
+        .getElementById("confirmPayBalance")
+        .addEventListener("click", async () => {
+          const amount =
+            parseFloat(document.getElementById("payAmount").value) || 0;
+          const method = document.getElementById("payMethod").value;
+          if (!payBalanceDocId || amount <= 0) {
+            alert("Enter a valid amount.");
+            return;
+          }
+          const docRef = doc(db, "booking", payBalanceDocId);
+          const snap = await getDoc(docRef);
+          if (!snap.exists()) {
+            alert("Booking not found.");
+            return;
+          }
+          const bData = snap.data();
+          const newPaid = (bData.paidAmount || 0) + amount;
+          const newBalance = Math.max((bData.balance || 0) - amount, 0);
+          const payment = { amount, method, date: todayStr(), ts: Date.now() };
+          await updateDoc(docRef, {
+            paidAmount: newPaid,
+            balance: newBalance,
+            payments: arrayUnion(payment),
+          });
+          bootstrap.Modal.getInstance(
+            document.getElementById("payBalanceModal"),
+          ).hide();
+          alert(
+            `Payment of ${fmtMoney(amount)} recorded via ${method === "cash" ? "Cash" : "GPay"}!`,
+          );
+          payBalanceDocId = null;
+        });
 
       function showBookingDetail(b) {
         const today = todayStr();
@@ -2293,6 +2596,34 @@
             : "AC";
           roomRows = `<div class="detail-row"><span class="lbl">${cat} ${type}</span><span class="val">${b.rooms || 1} room${(b.rooms || 1) > 1 ? "s" : ""}</span></div>`;
         }
+        const bal = Number(b.balance || 0);
+        const balRow =
+          bal > 0
+            ? `<div class="detail-row"><span class="lbl">Balance Due</span><span class="val" style="color:#dc2626">${fmtMoney(bal)} <button class="btn-pay-balance" onclick="openPayBalance('${b._id}','${b.bookingId || ""}','${b.name || ""}',${bal})"><i class='fa fa-indian-rupee-sign'></i> Collect</button></span></div>`
+            : `<div class="detail-row"><span class="lbl">Balance Due</span><span class="val" style="color:#16a34a">Fully Paid ✓</span></div>`;
+
+        // Payment history
+        let payHistory = "";
+        if (b.payments && b.payments.length > 0) {
+          payHistory = `<div style="margin-top:12px;border-top:1px solid #f5f0ea;padding-top:10px"><div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:8px">Payment History</div>`;
+          b.payments.forEach((p) => {
+            const badge =
+              p.method === "gpay"
+                ? `<span class="pay-badge gpay">📱 GPay</span>`
+                : `<span class="pay-badge cash">💵 Cash</span>`;
+            payHistory += `<div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:1px solid #f5f0ea"><span>${fmtDate(p.date)} ${badge}</span><span style="font-weight:600">${fmtMoney(p.amount)}</span></div>`;
+          });
+          payHistory += "</div>";
+        }
+
+        // Initial payment method
+        const initMethod =
+          b.paymentMethod || (b.payments && b.payments[0]?.method) || "cash";
+        const methodBadge =
+          initMethod === "gpay"
+            ? `<span class="pay-badge gpay">📱 GPay</span>`
+            : `<span class="pay-badge cash">💵 Cash</span>`;
+
         document.getElementById("bookingDetailBody").innerHTML = `
           <div style="margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;">
             <div>
@@ -2305,11 +2636,13 @@
           ${roomRows}
           <div class="detail-row"><span class="lbl">Check-in</span><span class="val">${fmtDate(b.checkin)} ${b.checkinTime ? '<span style="background:rgba(201,168,76,.12);color:var(--gold);padding:2px 8px;border-radius:2px;font-size:11px;margin-left:6px">' + fmtTime(b.checkinTime) + "</span>" : ""}</span></div>
           <div class="detail-row"><span class="lbl">Check-out</span><span class="val">${fmtDate(b.checkout)} ${b.checkoutTime ? '<span style="background:rgba(201,168,76,.12);color:var(--gold);padding:2px 8px;border-radius:2px;font-size:11px;margin-left:6px">' + fmtTime(b.checkoutTime) + "</span>" : ""}</span></div>
-          <div class="detail-row"><span class="lbl">Total Amount</span><span class="val">₹ ${b.totalAmount != null ? Number(b.totalAmount).toLocaleString("en-IN") : b.price ? b.price.toLocaleString("en-IN") : "—"}</span></div>
-          <div class="detail-row"><span class="lbl">Paid Amount</span><span class="val" style="color:#16a34a">₹ ${b.paidAmount != null ? Number(b.paidAmount).toLocaleString("en-IN") : b.price != null ? Number(b.price).toLocaleString("en-IN") : "—"}</span></div>
-          <div class="detail-row"><span class="lbl">Balance Due</span><span class="val" style="color:${(b.balance || 0) > 0 ? "#dc2626" : "#16a34a"}">₹ ${b.balance != null ? Number(b.balance).toLocaleString("en-IN") : "0"}</span></div>
+          <div class="detail-row"><span class="lbl">Total Amount</span><span class="val">${fmtMoney(b.totalAmount ?? b.price)}</span></div>
+          <div class="detail-row"><span class="lbl">Paid Amount</span><span class="val" style="color:#16a34a">${fmtMoney(b.paidAmount ?? b.price)}</span></div>
+          ${balRow}
+          <div class="detail-row"><span class="lbl">Payment Method</span><span class="val">${methodBadge}</span></div>
           <div class="detail-row"><span class="lbl">Payment ID</span><span class="val" style="font-size:11px">${b.paymentId || "—"}</span></div>
-          <div class="detail-row"><span class="lbl">Booked On</span><span class="val">${b.createdAt ? new Date(b.createdAt).toLocaleString("en-IN") : ""}</span></div>`;
+          <div class="detail-row"><span class="lbl">Booked On</span><span class="val">${b.createdAt ? new Date(b.createdAt).toLocaleString("en-IN") : ""}</span></div>
+          ${payHistory}`;
         new bootstrap.Modal(
           document.getElementById("bookingDetailModal"),
         ).show();
@@ -2347,6 +2680,160 @@
       }
       window.showDetail = (b) => showBookingDetail(b);
 
+      // ── FINANCE ──
+      let finRows = [];
+      let finFromVal = "",
+        finToVal = "";
+
+      window.applyFinFilter = function () {
+        finFromVal = document.getElementById("finFrom").value;
+        finToVal = document.getElementById("finTo").value;
+        renderFinance();
+      };
+
+      function renderFinance() {
+        finRows = [];
+        allBookings.forEach((b) => {
+          // Initial payment (booking created)
+          const createdDate = b.createdAt
+            ? new Date(b.createdAt).toISOString().split("T")[0]
+            : "";
+          const initMethod = b.paymentMethod || "cash";
+          if (b.paidAmount > 0 || b.price > 0) {
+            finRows.push({
+              date: createdDate,
+              bookingId: b.bookingId || "—",
+              guest: b.name || "",
+              type: "inflow",
+              method: initMethod,
+              amount: Number(b.paidAmount || b.price || 0),
+              note: "Initial Payment",
+              cancelled: b.cancelled || false,
+            });
+          }
+          // Balance payments
+          if (b.payments && b.payments.length > 0) {
+            b.payments.forEach((p) => {
+              finRows.push({
+                date: p.date || createdDate,
+                bookingId: b.bookingId || "—",
+                guest: b.name || "",
+                type: "inflow",
+                method: p.method || "cash",
+                amount: Number(p.amount || 0),
+                note: "Balance Payment",
+                cancelled: false,
+              });
+            });
+          }
+          // Cancellation refund
+          if (b.cancelled && b.paidAmount > 0) {
+            finRows.push({
+              date: b.cancelledAt || createdDate,
+              bookingId: b.bookingId || "—",
+              guest: b.name || "",
+              type: "outflow",
+              method: "—",
+              amount: Number(b.paidAmount || 0),
+              note: "Cancellation Refund",
+              cancelled: true,
+            });
+          }
+        });
+
+        // Apply date filter
+        let filtered = finRows;
+        if (finFromVal) filtered = filtered.filter((r) => r.date >= finFromVal);
+        if (finToVal) filtered = filtered.filter((r) => r.date <= finToVal);
+        filtered.sort((a, b) => b.date.localeCompare(a.date));
+
+        let inflow = 0,
+          outflow = 0,
+          pending = 0;
+        filtered.forEach((r) => {
+          if (r.type === "inflow") inflow += r.amount;
+          if (r.type === "outflow") outflow += r.amount;
+        });
+        // Pending balance — filter by booking checkin date
+        allBookings.forEach((b) => {
+          if (b.cancelled) return;
+          if (Number(b.balance || 0) <= 0) return;
+          const bd = b.checkin || "";
+          if (finFromVal && bd < finFromVal) return;
+          if (finToVal && bd > finToVal) return;
+          pending += Number(b.balance);
+        });
+
+        document.getElementById("finInflow").textContent = fmtMoney(inflow);
+        document.getElementById("finOutflow").textContent = fmtMoney(outflow);
+        document.getElementById("finPending").textContent = fmtMoney(pending);
+
+        const tb = document.getElementById("financeTable");
+        tb.innerHTML = "";
+        if (!filtered.length) {
+          tb.innerHTML = `<tr><td colspan="7" style="text-align:center;color:var(--muted);padding:24px">No transactions found</td></tr>`;
+          return;
+        }
+        filtered.forEach((r) => {
+          const typeBadge =
+            r.type === "inflow"
+              ? `<span class="fin-badge in">Inflow</span>`
+              : `<span class="fin-badge out">Outflow</span>`;
+          const methodBadge =
+            r.method === "gpay"
+              ? `<span class="pay-badge gpay">📱 GPay</span>`
+              : r.method === "cash"
+                ? `<span class="pay-badge cash">💵 Cash</span>`
+                : `<span style="color:var(--muted)">—</span>`;
+          const rowClass =
+            r.type === "inflow" ? "ledger-row-in" : "ledger-row-out";
+          tb.innerHTML += `<tr class="${rowClass}"><td>${fmtDate(r.date)}</td><td style="font-size:11px">${r.bookingId}</td><td>${r.guest}</td><td>${typeBadge}</td><td>${methodBadge}</td><td style="font-weight:700">${fmtMoney(r.amount)}</td><td style="font-size:11px;color:var(--muted)">${r.note}</td></tr>`;
+        });
+
+        // Store for export
+        window._finExportRows = filtered;
+      }
+
+      // ── EXPORT CSV ──
+      document.getElementById("exportCsvBtn").addEventListener("click", () => {
+        const rows = window._finExportRows || [];
+        if (!rows.length) {
+          alert("No data to export.");
+          return;
+        }
+        const headers = [
+          "Date",
+          "Booking ID",
+          "Guest",
+          "Type",
+          "Method",
+          "Amount (INR)",
+          "Note",
+        ];
+        const csv = [
+          headers.join(","),
+          ...rows.map((r) =>
+            [
+              fmtDate(r.date),
+              r.bookingId,
+              `"${r.guest}"`,
+              r.type,
+              r.method,
+              r.amount,
+              `"${r.note}"`,
+            ].join(","),
+          ),
+        ].join("\n");
+        const blob = new Blob([csv], { type: "text/csv" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `VAGR_Finance_${todayStr()}.csv`;
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+
+      // ── CALENDAR ──
       let calY = new Date().getFullYear(),
         calM = new Date().getMonth();
       const MONTHS = [
@@ -2455,6 +2942,7 @@
         renderCalendar();
       });
 
+      // ── CANCEL ──
       let foundIds = [];
       document
         .getElementById("findBookingBtn")
@@ -2496,8 +2984,16 @@
           document
             .getElementById("confirmCancelBtn")
             .addEventListener("click", async () => {
-              for (const id of foundIds)
-                await deleteDoc(doc(db, "booking", id));
+              for (const id of foundIds) {
+                const docRef = doc(db, "booking", id);
+                const snap = await getDoc(docRef);
+                if (snap.exists()) {
+                  await updateDoc(docRef, {
+                    cancelled: true,
+                    cancelledAt: todayStr(),
+                  });
+                }
+              }
               result.className = "cancel-result success";
               result.innerHTML =
                 "<i class='fa fa-check-circle' style='margin-right:6px'></i>Booking cancelled successfully.";
@@ -2507,11 +3003,13 @@
             });
         });
 
+      // ── SIDEBAR NAV ──
       const SECTIONS = {
         "#dashboard": "dashboardSection",
         "#calendar": "calendarSection",
         "#bookings": "bookingsSection",
         "#contacts": "contactsSection",
+        "#finance": "financeSection",
         "#cancel": "cancelSection",
       };
       const TITLES = {
@@ -2519,6 +3017,7 @@
         "#calendar": "Calendar",
         "#bookings": "Bookings",
         "#contacts": "Contacts",
+        "#finance": "Finance",
         "#cancel": "Cancel Booking",
       };
       document.querySelectorAll(".sidebar a").forEach((a) => {
@@ -2541,6 +3040,14 @@
           }
           if (a.getAttribute("href") === "#calendar")
             setTimeout(() => renderCalendar(), 50);
+          if (a.getAttribute("href") === "#finance") renderFinance();
+          // Hide global filter bar on finance page
+          const globalBar = document.querySelector(".date-filter-bar");
+          if (a.getAttribute("href") === "#finance") {
+            globalBar.style.display = "none";
+          } else {
+            globalBar.style.display = "flex";
+          }
         });
       });
       document.getElementById("sidebarToggle").addEventListener("click", () => {
@@ -2548,7 +3055,6 @@
         document.getElementById("mainContent").classList.toggle("shift");
       });
 
-      // MODAL OPEN — init date placeholders
       // MODAL OPEN
       document
         .getElementById("addBookingModal")
@@ -2604,6 +3110,7 @@
           const paidAmt =
             parseFloat(document.getElementById("adminPaid").value) || 0;
           const balanceAmt = totalAmt - paidAmt;
+          const payMethod = document.getElementById("adminPayMethod").value;
           const totalRooms = Object.values(roomCounts)
             .flatMap(Object.values)
             .reduce((a, b) => a + b, 0);
@@ -2632,6 +3139,19 @@
             totalAmount: totalAmt,
             paidAmount: paidAmt,
             balance: balanceAmt,
+            paymentMethod: payMethod,
+            payments:
+              paidAmt > 0
+                ? [
+                    {
+                      amount: paidAmt,
+                      method: payMethod,
+                      date: todayStr(),
+                      ts: Date.now(),
+                    },
+                  ]
+                : [],
+            cancelled: false,
             createdAt: Date.now(),
           });
           alert("Booking Added Successfully!");
