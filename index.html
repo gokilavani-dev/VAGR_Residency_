@@ -1641,6 +1641,11 @@
               <div class="stat-value small" id="finPending">₹0</div>
               <i class="fa fa-clock stat-icon" style="color: #8b5cf6"></i>
             </div>
+            <div class="stat-card teal">
+              <div class="stat-label">Total In Hand</div>
+              <div class="stat-value small" id="finInHand">₹0</div>
+              <i class="fa fa-wallet stat-icon" style="color: #14b8a6"></i>
+            </div>
             <div class="stat-card blue">
               <div class="stat-label">Cash Collected</div>
               <div class="stat-value small" id="finCash">₹0</div>
@@ -2888,6 +2893,9 @@
         document.getElementById("finPending").textContent = fmtMoney(pending);
         document.getElementById("finCash").textContent = fmtMoney(cashTotal);
         document.getElementById("finGpay").textContent = fmtMoney(gpayTotal);
+        document.getElementById("finInHand").textContent = fmtMoney(
+          inflow - outflow,
+        );
 
         const tb = document.getElementById("financeTable");
         tb.innerHTML = "";
